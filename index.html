@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANYMOUS STORE - Digital Products & Game Top Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8c52ff;
+            --secondary: #00ff88;
+            --danger: #ff3860;
+            --warning: #ffc107;
+            --dark: #121212;
+            --light: #f5f5f5;
+            --gray: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(18, 18, 18, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(140, 82, 255, 0.1), rgba(0, 0, 0, 0.8));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(140, 82, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            animation: pulse 15s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(140, 82, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .game-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .game-logo img {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .product-category {
+            margin-bottom: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-title i {
+            margin-right: 15px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(140, 82, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(140, 82, 255, 0.1), transparent);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .product-name i {
+            margin-right: 10px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .product-desc {
+            opacity: 0.8;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* Payment Info */
+        .payment-info {
+            background: rgba(0, 255, 136, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .payment-info h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-info h3 i {
+            margin-right: 10px;
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .payment-method {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-method i {
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+
+        /* Important Info */
+        .important-info {
+            background: rgba(255, 56, 96, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 56, 96, 0.2);
+        }
+
+        .important-info h3 {
+            color: var(--danger);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .important-info h3 i {
+            margin-right: 10px;
+        }
+
+        .info-list {
+            list-style-type: none;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .info-list li::before {
+            content: '•';
+            color: var(--danger);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(140, 82, 255, 0.1));
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            width: 280px;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-card p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: var(--primary);
+        }
+
+        /* Testimonial */
+        .testimonial {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .testimonial-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .testimonial-link:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-store"></i> ANYMOUS STORE
+            </a>
+            <nav class="nav-links">
+                <a href="#freefire">Free Fire</a>
+                <a href="#mlbb">Mobile Legends</a>
+                <a href="#ram">RAM</a>
+                <a href="#game">Game Hack</a>
+                <a href="#jpm">JPM</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>PREMIUM DIGITAL PRODUCTS & GAME TOP UP</h1>
+            <p>Get the best quality digital products, game top ups, and services at affordable prices. Fast delivery and guaranteed satisfaction!</p>
+            <a href="#freefire" class="btn">Game Top Up</a>
+            <a href="#ram" class="btn btn-outline">Digital Products</a>
+        </div>
+    </section>
+
+    <!-- Free Fire Section -->
+    <section class="products" id="freefire">
+        <div class="container">
+            <div class="game-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Free_Fire_Logo.png/1200px-Free_Fire_Logo.png" alt="Free Fire Logo" style="height: 60px;">
+                <h2 class="section-title">Free Fire Diamond</h2>
+            </div>
+            
+            <div class="product-category">
+                <h3 class="category-title"><i class="fas fa-gem"></i> PAKET DIAMOND REGULER</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 5 Diamonds</h3>
+                        <p class="product-price">Rp1.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 10 Diamonds</h3>
+                        <p class="product-price">Rp2.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 12 Diamonds</h3>
+                        <p class="product-price">Rp2.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 50 Diamonds</h3>
+                        <p class="product-price">Rp7.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 55 Diamonds</h3>
+                        <p class="product-price">Rp8.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 70 Diamonds</h3>
+                        <p class="product-price">Rp9.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 80 Diamonds</h3>
+                        <p class="product-price">Rp11.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 100 Diamonds</h3>
+                        <p class="product-price">Rp14.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 120 Diamonds</h3>
+                        <p class="product-price">Rp16.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 130 Diamonds</h3>
+                        <p class="product-price">Rp18.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 140 Diamonds</h3>
+                        <p class="product-price">Rp18.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 145 Diamonds</h3>
+                        <p class="product-price">Rp19.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 150 Diamonds</h3>
+                        <p class="product-price">Rp20.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 190 Diamonds</h3>
+                        <p class="product-price">Rp26.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 200 Diamonds</h3>
+                        <p class="product-price">Rp27.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 210 Diamonds</h3>
+                        <p class="product-price">Rp28.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 280 Diamonds</h3>
+                        <p class="product-price">Rp37.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 355 Diamonds</h3>
+                        <p class="product-price">Rp46.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h3 class="category-title"><i class="fas fa-crown"></i> PAKET MEMBERSHIP & PASS</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-level-up-alt"></i> Level Up Pass</h3>
+                        <p class="product-price">Rp15.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-calendar-week"></i> Mingguan Membership</h3>
+                        <p class="product-price">Rp29.900</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-calendar-alt"></i> Bulanan Membership</h3>
+                        <p class="product-price">Rp91.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3><i class="fas fa-wallet"></i> METODE PEMBAYARAN</h3>
+                <p>Kami menerima pembayaran melalui:</p>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fas fa-money-bill-wave"></i> DANA
+                    </div>
+                </div>
+            </div>
+
+            <div class="important-info">
+                <h3><i class="fas fa-exclamation-circle"></i> INFO PENTING</h3>
+                <ul class="info-list">
+                    <li><strong>Bonus Extra Diamond</strong> untuk pembelian di atas 1,000 Diamonds!</li>
+                    <li><strong>Garansi 100%</strong> top up aman & cepat</li>
+                    <li><strong>Proses instan</strong> (3-5 menit setelah pembayaran)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Legends Section -->
+    <section class="products" id="mlbb">
+        <div class="container">
+            <div class="game-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Mobile_Legends_Bang_Bang_Logo.png/1200px-Mobile_Legends_Bang_Bang_Logo.png" alt="Mobile Legends Logo" style="height: 60px;">
+                <h2 class="section-title">Mobile Legends Diamond</h2>
+            </div>
+            
+            <div class="product-category">
+                <h3 class="category-title"><i class="fas fa-gem"></i> PAKET DIAMOND REGULER</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 5 Diamonds</h3>
+                        <p class="product-price">Rp1.500</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 12 Diamonds</h3>
+                        <p class="product-price">Rp3.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 28 Diamonds</h3>
+                        <p class="product-price">Rp7.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 50 Diamonds</h3>
+                        <p class="product-price">Rp12.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 70 Diamonds</h3>
+                        <p class="product-price">Rp16.800</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 86 Diamonds</h3>
+                        <p class="product-price">Rp20.600</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 100 Diamonds</h3>
+                        <p class="product-price">Rp24.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 140 Diamonds</h3>
+                        <p class="product-price">Rp33.600</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 172 Diamonds</h3>
+                        <p class="product-price">Rp41.300</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 210 Diamonds</h3>
+                        <p class="product-price">Rp50.400</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 257 Diamonds</h3>
+                        <p class="product-price">Rp61.700</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 344 Diamonds</h3>
+                        <p class="product-price">Rp82.600</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 406 Diamonds</h3>
+                        <p class="product-price">Rp97.400</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 514 Diamonds</h3>
+                        <p class="product-price">Rp123.400</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 600 Diamonds</h3>
+                        <p class="product-price">Rp144.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 706 Diamonds</h3>
+                        <p class="product-price">Rp169.400</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 878 Diamonds</h3>
+                        <p class="product-price">Rp210.700</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 963 Diamonds</h3>
+                        <p class="product-price">Rp231.100</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 1,050 Diamonds</h3>
+                        <p class="product-price">Rp252.000</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 1,228 Diamonds</h3>
+                        <p class="product-price">Rp294.700</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 1,412 Diamonds</h3>
+                        <p class="product-price">Rp338.900</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 1,669 Diamonds</h3>
+                        <p class="product-price">Rp400.600</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 2,195 Diamonds</h3>
+                        <p class="product-price">Rp526.800</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 2,901 Diamonds</h3>
+                        <p class="product-price">Rp696.200</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 3,688 Diamonds</h3>
+                        <p class="product-price">Rp885.100</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 4,038 Diamonds</h3>
+                        <p class="product-price">Rp969.100</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-diamond"></i> 4,394 Diamonds</h3>
+                        <p class="product-price">Rp1,054.600</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-category">
+                <h3 class="category-title"><i class="fas fa-star"></i> PAKET SPESIAL & BONUS</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-calendar-week"></i> Weekly Diamond Pass</h3>
+                        <p class="product-price">Rp30.000</p>
+                        <p class="product-desc">50 Diamonds/hari (7 hari) + Bonus 100 Diamonds</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-crown"></i> Starlight Member</h3>
+                        <p class="product-price">Rp150.000</p>
+                        <p class="product-desc">Skin eksklusif bulanan + 300 Diamonds instan</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-moon"></i> Twilight Pass</h3>
+                        <p class="product-price">Rp200.000</p>
+                        <p class="product-desc">800 Diamonds + 3 Skin Elite pilihan</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name"><i class="fas fa-chess-queen"></i> Elite Pass</h3>
+                        <p class="product-price">Rp500.000</p>
+                        <p class="product-desc">1,200 Diamonds + 5 Skin Legend langka</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3><i class="fas fa-wallet"></i> METODE PEMBAYARAN</h3>
+                <p>Kami menerima pembayaran melalui:</p>
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fas fa-money-bill-wave"></i> DANA
+                    </div>
+                </div>
+            </div>
+
+            <div class="important-info">
+                <h3><i class="fas fa-exclamation-circle"></i> PERHATIAN</h3>
+                <ul class="info-list">
+                    <li>Harga bisa berubah saat event khusus</li>
+                    <li>Bonus hanya berlaku untuk paket spesial</li>
+                    <li>Masa aktif voucher 30 hari setelah pembelian</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- RAM Section -->
+    <section class="products" id="ram">
+        <div class="container">
+            <h2 class="section-title">RAM Packages</h2>
+            <div class="product-category">
+                <h3 class="category-title"><i class="fas fa-memory"></i> PANEL MENU</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 1GB</h3>
+                        <p class="product-price">Rp 500</p>
+                        <p class="product-desc">Affordable RAM package for light usage</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 2GB</h3>
+                        <p class="product-price">Rp 1.000</p>
+                        <p class="product-desc">Double the power for your needs</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 3GB</h3>
+                        <p class="product-price">Rp 2.000</p>
+                        <p class="product-desc">Great for moderate usage</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 4GB</h3>
+                        <p class="product-price">Rp 3.000</p>
+                        <p class="product-desc">Smooth performance package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 5GB</h3>
+                        <p class="product-price">Rp 4.000</p>
+                        <p class="product-desc">Powerful RAM solution</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 6GB</h3>
+                        <p class="product-price">Rp 5.000</p>
+                        <p class="product-desc">High capacity package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 7GB</h3>
+                        <p class="product-price">Rp 6.000</p>
+                        <p class="product-desc">Premium performance</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 8GB</h3>
+                        <p class="product-price">Rp 7.000</p>
+                        <p class="product-desc">Extreme power package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 9GB</h3>
+                        <p class="product-price">Rp 8.000</p>
+                        <p class="product-desc">Near unlimited performance</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM 10GB</h3>
+                        <p class="product-price">Rp 9.000</p>
+                        <p class="product-desc">Massive capacity package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">RAM UNLI</h3>
+                        <p class="product-price">Rp 10.000</p>
+                        <p class="product-desc">Unlimited power for heavy usage</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="game">
+        <div class="container">
+            <h2 class="section-title">Game Hack Packages</h2>
+            <div class="product-category">
+                <h3 class="category-title"><i class="fas fa-gamepad"></i> GAME HACK MENU</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3 class="product-name">PAKET A</h3>
+                        <p class="product-price">Rp 2.000</p>
+                        <p class="product-desc">Basic game hack package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">PAKET B</h3>
+                        <p class="product-price">Rp 10.000</p>
+                        <p class="product-desc">Premium game hack package with all features</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="jpm">
+        <div class="container">
+            <h2 class="section-title">JPM Services</h2>
+            <div class="product-category">
+                <h3 class="category-title"><i class="fas fa-users"></i> JPM MENU</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <h3 class="product-name">JPM GRUP</h3>
+                        <p class="product-price">Rp 4.000</p>
+                        <p class="product-desc">Group join package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">JPM SLIDE</h3>
+                        <p class="product-price">Rp 10.000</p>
+                        <p class="product-desc">Slide join package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">PUSHKONTAK</h3>
+                        <p class="product-price">Rp 9.000</p>
+                        <p class="product-desc">Contact push service</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                    <div class="product-card">
+                        <h3 class="product-name">JPM TAG</h3>
+                        <p class="product-price">Rp 8.000</p>
+                        <p class="product-desc">Tagging service package</p>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="container">
+            <h2 class="section-title">Customer Testimonials</h2>
+            <p>See what our customers say about our products and services</p>
+            <a href="https://whatsapp.com/channel/0029VbA9hy1Elagk2lYVNa1T" class="testimonial-link" target="_blank">
+                View Testimonial Channel <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p>For orders or questions, please contact us through:</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-crown"></i>
+                    <h3>OWNER</h3>
+                    <p>+62 831-9243-6292</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>ADMIN</h3>
+                    <p>+62 895-1754-6710</p>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2023 ANYMOUS STORE. All rights reserved.</p>
+            <p class="footer-text">If admin doesn't respond, please contact the owner directly.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to product cards when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
