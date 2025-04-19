@@ -1,279 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANONYMOUS STORE</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #4CAF50;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 15px 0;
-        }
-        
-        .divider-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: #4CAF50;
-        }
-        
-        .divider-text {
-            padding: 0 10px;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        
-        .menu-section {
-            background-color: #1e1e1e;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-left: 4px solid #4CAF50;
-        }
-        
-        .section-title {
-            color: #4CAF50;
-            font-size: 18px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-title span {
-            margin-left: 10px;
-        }
-        
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px dashed #333;
-        }
-        
-        .menu-item:last-child {
-            border-bottom: none;
-        }
-        
-        .info-box {
-            background-color: #1e1e1e;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-left: 4px solid #FF5722;
-        }
-        
-        .info-title {
-            color: #FF5722;
-            font-size: 18px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        .contact-info {
-            margin-bottom: 15px;
-        }
-        
-        .payment-method {
-            margin-bottom: 15px;
-        }
-        
-        .payment-title {
-            color: #2196F3;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .payment-detail {
-            display: flex;
-            margin-bottom: 3px;
-        }
-        
-        .payment-label {
-            min-width: 120px;
-            color: #9E9E9E;
-        }
-        
-        .links {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .link-item {
-            margin-bottom: 8px;
-        }
-        
-        .link-item a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        
-        .link-item a:hover {
-            text-decoration: underline;
-        }
-        
-        .note {
-            font-size: 14px;
-            color: #9E9E9E;
-            margin-top: 5px;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #757575;
-            font-size: 12px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HANZZ STORE - Toko Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1607082350899-a3cf9c8ec9a5') no-repeat center center/cover;
+      z-index: -1;
+      animation: zoom 30s infinite alternate ease-in-out;
+    }
+    @keyframes zoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.2); }
+    }
+    .hero {
+      max-width: 800px;
+      padding: 2rem;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #25D366, #00FFAB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #25D366; }
+      to { text-shadow: 0 0 30px #00FFAB; }
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    .hero span.typing {
+      font-weight: bold;
+      color: #00FFAB;
+    }
+    .btn-wa {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-wa:hover {
+      background: #1ebc5d;
+      transform: scale(1.05);
+    }
+    /* PARTICLES */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 0;
+      left: 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-        🔰═══════⛔═══════🔰<br>
-        𝐀𝐍𝐘𝐌𝐎𝐔𝐒 𝐒𝐓𝐎𝐑𝐄<br>
-        🔰═══════⛔═══════🔰
+  <header>
+    <div id="particles-js"></div>
+    <div class="hero">
+      <h1>HANZZ STORE</h1>
+      <p><span class="typing">Top Up All Game & SC Bug Premium</span></p>
+      <a href="https://wa.me/6283192436292" class="btn-wa">Hubungi via WhatsApp</a>
     </div>
-    
-    <div class="menu-section">
-        <div class="section-title">『 PANEL MENU 』 <span>📦</span></div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 1GB</span>
-            <span>Rp 500</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 2GB</span>
-            <span>Rp 1.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 3GB</span>
-            <span>Rp 2.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 4GB</span>
-            <span>Rp 3.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 5GB</span>
-            <span>Rp 4.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 6GB</span>
-            <span>Rp 5.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 7GB</span>
-            <span>Rp 6.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 8GB</span>
-            <span>Rp 7.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 9GB</span>
-            <span>Rp 8.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM 10GB</span>
-            <span>Rp 9.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📮 RAM UNLI</span>
-            <span>Rp 10.000</span>
-        </div>
+  </header>
+  <!-- TYPING EFFECT -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed(".typing", {
+      strings: ["Top Up All Game", "SC Bug Thunder", "Layanan Terbaik & Cepat"],
+      typeSpeed: 70,
+      backSpeed: 40,
+      loop: true
+    });
+  </script>
+
+  <!-- PARTICLE.JS BACKGROUND -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 100 },
+        "color": { "value": "#25D366" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#25D366",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3
+        }
+      }
+    });
+  </script>
+<section id="produk" style="background-color: #121212; padding: 4rem 2rem;">
+    <h2 style="text-align:center; font-size: 2.5rem; margin-bottom: 3rem; color: #25D366;">Layanan Kami</h2>
+    <div class="produk-container">
+      <!-- SC BUG -->
+      <div class="produk-card reveal">
+        <h3>SC BUG - THUNDER</h3>
+        <p class="harga">Harga: <strong>Rp 40.000</strong></p>
+        <ul>
+          <li>AUTO C1</li>
+          <li>TEMBUS UI</li>
+          <li>SPAM CALL</li>
+          <li>DELAY</li>
+        </ul>
+        <a href="https://wa.me/6283192436292" class="btn-wa">Pesan Sekarang</a>
+      </div>
+
+      <!-- TOP UP ALL GAME -->
+      <div class="produk-card reveal">
+        <h3>TOP UP ALL GAME</h3>
+        <p class="harga">Harga: <strong>Sesuai Nominal</strong></p>
+        <ul>
+          <li>Semua Game</li>
+          <li>Berikan nominal</li>
+          <li>Kami sesuaikan</li>
+        </ul>
+        <a href="https://wa.me/6283192436292" class="btn-wa">Top Up Sekarang</a>
+      </div>
     </div>
-    
-    <div class="menu-section">
-        <div class="section-title">『 GAME HACK MENU 』 <span>🎮</span></div>
-        <div class="menu-item">
-            <span>◦ 📁 PAKET A</span>
-            <span>Rp 2.000</span>
-        </div>
-        <div class="menu-item">
-            <span>◦ 📁 PAKET B</span>
-            <span>Rp 10.000</span>
-        </div>
+  </section>
+
+  <style>
+    .produk-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .produk-card {
+      background: #1e1e1e;
+      padding: 2rem;
+      border-radius: 20px;
+      width: 300px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .produk-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,255,171,0.4);
+    }
+
+    .produk-card h3 {
+      font-size: 1.8rem;
+      color: #00FFAB;
+      margin-bottom: 1rem;
+    }
+
+    .produk-card .harga {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #ffffffb0;
+    }
+
+    .produk-card ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+      text-align: left;
+      padding: 0;
+      color: #ddd;
+    }
+
+    .produk-card ul li {
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .produk-card ul li::before {
+      content: "✔️";
+      position: absolute;
+      left: 0;
+      color: #25D366;
+    }
+  </style>
+<script>
+    const reveals = document.querySelectorAll('.reveal');
+    window.addEventListener('scroll', () => {
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const revealTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (revealTop < windowHeight - revealPoint) {
+          reveals[i].classList.add('active');
+        } else {
+          reveals[i].classList.remove('active');
+        }
+      }
+    });
+  </script>
+
+  <style>
+    .reveal {
+      opacity: 0;
+      transform: translateY(100px);
+      transition: 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+<section id="testimoni" style="padding: 4rem 2rem; background: #181818;">
+    <h2 style="text-align:center; font-size:2.5rem; color:#25D366;">Saluran & Grup WhatsApp</h2>
+    <div class="grup-container">
+      <div class="grup-card slide-in">
+        <h3>Komunitas Utama</h3>
+        <p><a href="https://whatsapp.com/channel/0029VbAHh2DI1rckHlkm8c2l" target="_blank">Gabung Saluran</a></p>
+      </div>
+      <div class="grup-card slide-in">
+        <h3>Grup Marketplace</h3>
+        <p><a href="https://chat.whatsapp.com/C4SzdNCEmgQLgNmmHSWiDN" target="_blank">Gabung Grup</a></p>
+      </div>
+      <div class="grup-card slide-in">
+        <h3>Grup Public</h3>
+        <p><a href="https://chat.whatsapp.com/J9k1XlG4clcJvMhN8ZLisA" target="_blank">Gabung Grup</a></p>
+      </div>
+      <div class="grup-card slide-in">
+        <h3>Saluran Testimoni</h3>
+        <p><a href="https://whatsapp.com/channel/0029Vb5vHNu0lwgjQtsoZ70U" target="_blank">Lihat Testimoni</a></p>
+      </div>
     </div>
-    
     <div class="info-box">
-        <div class="info-title">⿻ ⌜ INFO STORE ⌟ ⿻</div>
-        
-        <div class="contact-info">
-            <div class="divider">
-                <div class="divider-line"></div>
-                <div class="divider-text">CONTACT</div>
-                <div class="divider-line"></div>
-            </div>
-            <div>🤴 OWNER :<br>+6283192436292</div>
-            <div>👩‍💻 ADMIN :<br>+6289517546710</div>
-        </div>
-        
-        <div class="payment-method">
-            <div class="divider">
-                <div class="divider-line"></div>
-                <div class="divider-text">PAYMENT</div>
-                <div class="divider-line"></div>
-            </div>
-            <div>Pulsa, Dana</div>
-            
-            <div class="payment-title">➣ DANA</div>
-            <div class="payment-detail">
-                <div class="payment-label">👤 USERNAME :</div>
-                <div>083192436292</div>
-            </div>
-            <div class="payment-detail">
-                <div class="payment-label">🚀 NOMOR REKENING :</div>
-                <div>083192436292</div>
-            </div>
-            
-            <div class="payment-title">➣ PULSA</div>
-            <div class="payment-detail">
-                <div class="payment-label">👤 USERNAME :</div>
-                <div>xxxgamerxxx</div>
-            </div>
-            <div class="payment-detail">
-                <div class="payment-label">🚀 NOMOR :</div>
-                <div>083192436292</div>
-            </div>
-        </div>
-        
-        <div class="divider">
-            <div class="divider-line"></div>
-            <div class="divider-text">INFO</div>
-            <div class="divider-line"></div>
-        </div>
-        
-        <div class="note">1. Jika admin off hubungi owner</div>
-        <div class="note">2. Lihat Ch testi biar tau kapan bukanya</div>
+      <p><strong>Info:</strong> Grup Public adalah tempat ngobrol bebas seperti komunitas. Grup Marketplace boleh jualan tapi jangan spam.</p>
     </div>
-    
-    <div class="info-box">
-        <div class="info-title">🔰 LINK GRUP 🔰</div>
-        <div class="links">
-            <div class="link-item">📮 TESTIMONI :<br><a href="https://whatsapp.com/channel/0029VbA9hy1Elagk2lYVNa1T" target="_blank">https://whatsapp.com/channel/0029VbA9hy1Elagk2lYVNa1T</a></div>
-            <div class="link-item">📮 SALURAN UTAMA :<br><a href="https://whatsapp.com/channel/0029Vb9nzf18F2pKgsLHA20V" target="_blank">https://whatsapp.com/channel/0029Vb9nzf18F2pKgsLHA20V</a></div>
-            <div class="link-item">📮 SALURAN KE 2 :<br><a href="https://whatsapp.com/channel/0029VbAlzgC9sBI55S3E2F32" target="_blank">https://whatsapp.com/channel/0029VbAlzgC9sBI55S3E2F32</a></div>
-            <div class="link-item">📮 SALURAN KE 3 :<br><a href="https://whatsapp.com/channel/0029VbAI8z03LdQUKa9Uy31O" target="_blank">https://whatsapp.com/channel/0029VbAI8z03LdQUKa9Uy31O</a></div>
-            <div class="link-item">📮 GRUP UTAMA :<br><a href="https://chat.whatsapp.com/J9k1XlG4clcJvMhN8ZLisA" target="_blank">https://chat.whatsapp.com/J9k1XlG4clcJvMhN8ZLisA</a></div>
-        </div>
+  </section>
+
+  <style>
+    .grup-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .grup-card {
+      background: linear-gradient(145deg, #1f1f1f, #101010);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,255,171,0.2);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .grup-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0,255,171,0.4);
+    }
+
+    .grup-card h3 {
+      color: #00FFAB;
+      margin-bottom: 1rem;
+    }
+
+    .grup-card a {
+      color: #25D366;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .grup-card a:hover {
+      text-decoration: underline;
+    }
+
+    .info-box {
+      margin-top: 3rem;
+      background: #2a2a2a;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      color: #ccc;
+      font-size: 1rem;
+    }
+  </style>
+<script>
+    const slideCards = document.querySelectorAll('.slide-in');
+    window.addEventListener('scroll', () => {
+      slideCards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (top < windowHeight - 50) {
+          card.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .slide-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+    .slide-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+<footer style="position: relative; background: #0f0f0f; color: #aaa; text-align: center; padding: 6rem 1rem 3rem;">
+    <svg viewBox="0 0 1440 320" style="position: absolute; top: -100px; left: 0; width: 100%; height: auto;">
+      <path fill="#121212" fill-opacity="1" d="M0,160L60,138.7C120,117,240,75,360,58.7C480,43,600,53,720,74.7C840,96,960,128,1080,138.7C1200,149,1320,139,1380,133.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    </svg>
+    <div style="position: relative; z-index: 1;">
+      <h2 style="font-size: 2rem; color: #25D366;">HANZZ STORE</h2>
+      <p style="margin-top: 0.5rem;">Terima kasih sudah mengunjungi website kami</p>
+      <p>Semua transaksi hanya via WhatsApp: <a href="https://wa.me/6283192436292" style="color:#25D366;">0831-9243-6292</a></p>
+      <p style="margin-top: 1rem;">&copy; 2025 HANZZ STORE. All Rights Reserved.</p>
     </div>
-    
-    <div class="footer">
-        ━━━━━━━━━━━━━━━━━━━
-    </div>
+  </footer>
+<a href="https://wa.me/6283192436292" target="_blank" class="floating-wa">
+    <img src="https://img.icons8.com/fluency/48/whatsapp.png" alt="WhatsApp">
+  </a>
+
+  <style>
+    .floating-wa {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      background-color: #25D366;
+      padding: 12px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #25D36680;
+      animation: pulse 2s infinite;
+      transition: transform 0.3s;
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+  </style>
 </body>
-</html>
+      </html>
