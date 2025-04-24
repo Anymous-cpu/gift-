@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FATHANZZ DESAIGN</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FATHANZZ HACKING </title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
-      font-family: 'Courier New', Courier, monospace;
-      background: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAx...') no-repeat center center/cover;
-      position: relative;
-      overflow: hidden;
+      font-family: 'Share Tech Mono', monospace;
+      background: black;
       color: #00ffcc;
+      overflow: hidden;
     }
 
     #particles-js {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
+      top: 0; left: 0;
       z-index: 0;
     }
 
@@ -34,96 +36,156 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.65);
+      text-align: center;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 30px;
-      color: cyan;
+    h1, h2 {
+      color: #00ffff;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 20px;
     }
 
     .btn {
-      padding: 15px 30px;
+      padding: 12px 28px;
       margin: 10px;
-      font-size: 1.2rem;
-      border: none;
+      font-size: 1rem;
+      border: 2px solid #00ffff;
       border-radius: 10px;
-      background: linear-gradient(135deg, #00f0ff, #006eff);
-      color: white;
+      background: transparent;
+      color: #00ffff;
       cursor: pointer;
-      box-shadow: 0 0 10px cyan;
-      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease-in-out;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,255,255,0.2);
+      transform: skewX(-45deg);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px white;
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 15px #00ffff;
     }
 
-    #hackInput, #prankOutput {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    #targetNumber {
+    input {
       padding: 10px;
       font-size: 1.1rem;
-      margin: 20px 0;
-      width: 250px;
+      border-radius: 8px;
+      border: none;
+      width: 240px;
       text-align: center;
+      margin-bottom: 20px;
     }
 
     #prankCode {
-      background: rgba(0, 0, 0, 0.9);
-      border: 1px solid #00ffcc;
+      background: black;
       padding: 20px;
-      width: 90%;
-      max-width: 700px;
+      width: 95%;
+      max-width: 720px;
       height: 400px;
       overflow-y: auto;
       white-space: pre-wrap;
-      text-align: left;
       color: #00ffcc;
-      font-size: 14px;
+      font-size: 15px;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px #00ffff;
     }
+
+    #typingEffect {
+      font-size: 1.5rem;
+      color: #00ffff;
+      border-right: 2px solid #00ffff;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #00ffff; }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
+    }
+
+    .glitch {
+      animation: glitch 0.5s linear 3;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes scan {
+      0% { box-shadow: 0 0 0px #00ffff; }
+      50% { box-shadow: 0 0 25px #00ffff; }
+      100% { box-shadow: 0 0 0px #00ffff; }
+    }
+
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
+
   <div class="overlay" id="mainMenu">
-    <h1>FATHANZZ DESAIGN</h1>
-    <button class="btn" onclick="showHack()">Hack</button>
+    <h1 id="typingEffect">FATHANZZ HACKING</h1>
+    <button class="btn" onclick="showHack()">Mulai Retas</button>
   </div>
 
-  <div class="overlay" id="hackInput">
+  <div class="overlay" id="hackInput" style="display: none;">
     <h2>Masukkan Nomor Target</h2>
-    <input type="text" id="targetNumber" placeholder="08xxxxxxxxxx">
-    <button class="btn" onclick="startPrank()">Mulai Retas</button>
+    <input type="text" id="targetNumber" placeholder="08xxxxxxxxxx" />
+    <button class="btn" onclick="startPrank()">Mulai Simulasi</button>
   </div>
 
-  <div class="overlay" id="prankOutput">
+  <div class="overlay" id="prankOutput" style="display: none;">
     <pre id="prankCode"></pre>
   </div>
 
-  <!-- Particles JS -->
+  <audio id="typeSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f5b7d7e2e6.mp3?filename=keyboard-typing-132273.mp3"></audio>
+  <audio id="endSound" src="https://cdn.pixabay.com/download/audio/2022/03/16/audio_c6ef2dc154.mp3?filename=powerdown-143105.mp3"></audio>
+
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS("particles-js", {
       particles: {
-        number: { value: 80 },
+        number: { value: 100 },
         color: { value: "#00ffff" },
         shape: { type: "circle" },
         opacity: { value: 0.5 },
         size: { value: 3 },
         line_linked: {
           enable: true,
-          distance: 150,
+          distance: 120,
           color: "#00ffff",
           opacity: 0.4,
           width: 1
@@ -138,38 +200,50 @@
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: { enable: true, mode: "repulse" },
+          onhover: { enable: true, mode: "grab" },
           onclick: { enable: true, mode: "push" }
         },
         modes: {
-          repulse: { distance: 100 },
+          grab: { distance: 140, line_linked: { opacity: 0.7 }},
           push: { particles_nb: 4 }
         }
+      },
+      retina_detect: true
+    });
+
+    function showHack() {
+      document.getElementById("mainMenu").style.display = "none";
+      document.getElementById("hackInput").style.display = "flex";
+    }
+
+    function startPrank() {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FATHANZZ DESAIGN</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FATHANZZ HACKING </title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
-      font-family: 'Courier New', Courier, monospace;
-      background: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAx...') no-repeat center center/cover;
-      position: relative;
-      overflow: hidden;
+      font-family: 'Share Tech Mono', monospace;
+      background: black;
       color: #00ffcc;
+      overflow: hidden;
     }
 
     #particles-js {
-      position: absolute;
+      position: fixed;
       width: 100%;
       height: 100%;
+      top: 0; left: 0;
       z-index: 0;
     }
 
@@ -181,96 +255,156 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.65);
+      text-align: center;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 30px;
-      color: cyan;
+    h1, h2 {
+      color: #00ffff;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 20px;
     }
 
     .btn {
-      padding: 15px 30px;
+      padding: 12px 28px;
       margin: 10px;
-      font-size: 1.2rem;
-      border: none;
+      font-size: 1rem;
+      border: 2px solid #00ffff;
       border-radius: 10px;
-      background: linear-gradient(135deg, #00f0ff, #006eff);
-      color: white;
+      background: transparent;
+      color: #00ffff;
       cursor: pointer;
-      box-shadow: 0 0 10px cyan;
-      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease-in-out;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,255,255,0.2);
+      transform: skewX(-45deg);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px white;
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 15px #00ffff;
     }
 
-    #hackInput, #prankOutput {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    #targetNumber {
+    input {
       padding: 10px;
       font-size: 1.1rem;
-      margin: 20px 0;
-      width: 250px;
+      border-radius: 8px;
+      border: none;
+      width: 240px;
       text-align: center;
+      margin-bottom: 20px;
     }
 
     #prankCode {
-      background: rgba(0, 0, 0, 0.9);
-      border: 1px solid #00ffcc;
+      background: black;
       padding: 20px;
-      width: 90%;
-      max-width: 700px;
+      width: 95%;
+      max-width: 720px;
       height: 400px;
       overflow-y: auto;
       white-space: pre-wrap;
-      text-align: left;
       color: #00ffcc;
-      font-size: 14px;
+      font-size: 15px;
+      border: 2px solid #00ffff;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px #00ffff;
     }
+
+    #typingEffect {
+      font-size: 1.5rem;
+      color: #00ffff;
+      border-right: 2px solid #00ffff;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #00ffff; }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
+    }
+
+    .glitch {
+      animation: glitch 0.5s linear 3;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes scan {
+      0% { box-shadow: 0 0 0px #00ffff; }
+      50% { box-shadow: 0 0 25px #00ffff; }
+      100% { box-shadow: 0 0 0px #00ffff; }
+    }
+
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
+
   <div class="overlay" id="mainMenu">
-    <h1>FATHANZZ DESAIGN</h1>
-    <button class="btn" onclick="showHack()">Hack</button>
+    <h1 id="typingEffect">FATHANZZ HACKING</h1>
+    <button class="btn" onclick="showHack()">Mulai Retas</button>
   </div>
 
-  <div class="overlay" id="hackInput">
+  <div class="overlay" id="hackInput" style="display: none;">
     <h2>Masukkan Nomor Target</h2>
-    <input type="text" id="targetNumber" placeholder="08xxxxxxxxxx">
-    <button class="btn" onclick="startPrank()">Mulai Retas</button>
+    <input type="text" id="targetNumber" placeholder="08xxxxxxxxxx" />
+    <button class="btn" onclick="startPrank()">Mulai Simulasi</button>
   </div>
 
-  <div class="overlay" id="prankOutput">
+  <div class="overlay" id="prankOutput" style="display: none;">
     <pre id="prankCode"></pre>
   </div>
 
-  <!-- Particles JS -->
+  <audio id="typeSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f5b7d7e2e6.mp3?filename=keyboard-typing-132273.mp3"></audio>
+  <audio id="endSound" src="https://cdn.pixabay.com/download/audio/2022/03/16/audio_c6ef2dc154.mp3?filename=powerdown-143105.mp3"></audio>
+
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     particlesJS("particles-js", {
       particles: {
-        number: { value: 80 },
+        number: { value: 100 },
         color: { value: "#00ffff" },
         shape: { type: "circle" },
         opacity: { value: 0.5 },
         size: { value: 3 },
         line_linked: {
           enable: true,
-          distance: 150,
+          distance: 120,
           color: "#00ffff",
           opacity: 0.4,
           width: 1
@@ -285,11 +419,11 @@
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: { enable: true, mode: "repulse" },
+          onhover: { enable: true, mode: "grab" },
           onclick: { enable: true, mode: "push" }
         },
         modes: {
-          repulse: { distance: 100 },
+          grab: { distance: 140, line_linked: { opacity: 0.7 }},
           push: { particles_nb: 4 }
         }
       },
@@ -312,48 +446,29 @@
       document.getElementById("prankOutput").style.display = "flex";
 
       const output = document.getElementById("prankCode");
-      output.innerText = "";
+      const typeSound = document.getElementById("typeSound");
+      const endSound = document.getElementById("endSound");
 
+      output.innerText = "";
       let lines = [
-        "Mengakses terminal...",
-        "Menembus firewall...",
-        "Bypassing otentikasi...",
-        "Mendeteksi port terbuka...",
-        "Menyusup ke sistem...",
-        "Mengambil hash password...",
-        "Melakukan brute force...",
-        "Menyalin berkas...",
-        "Mencuri cookies...",
-        "Menonaktifkan antivirus...",
-        "Menyembunyikan jejak...",
-        "Melakukan enkripsi balik...",
-        "Mengunggah ke server rahasia...",
-        "Mengakses terminal...",
-    "Menembus firewall...",
-    "Bypassing otentikasi...",
-    "Mendeteksi port terbuka...",
-    "Menyusup ke sistem...",
-    "Mengambil hash password...",
-    "Melakukan brute force...",
-    "Menyalin berkas...",
-    "Mencuri cookies...",
-    "Menonaktifkan antivirus...",
-    "Menyembunyikan jejak...",
-    "Melakukan enkripsi balik...",
-    "Mengunggah ke server rahasia...",
+        ">> Menghubungkan ke server rahasia...",
+        ">> Autentikasi bypass...",
+        ">> Membobol firewall...",
+        ">> Mengambil data terenkripsi...",
+        ">> Hash password ditemukan...",
+        ">> Melakukan dekripsi...",
+        ">> Mengakses database internal...",
+        ">> Mengambil file sistem...",
+        ">> Menyembunyikan jejak...",
+        ">> Membuka jalur backdoor...",
+        ">> Menyusup ke perangkat target..."
       ];
 
       for (let i = 0; i < 1000; i++) {
-        lines.push(`[+] Log ${i + 1} : 0x${(Math.random()*99999|0).toString(16).padStart(5, '0')} — OK`);
+        lines.push(`[+] Log ${i + 1} : 0x${(Math.random()*65536|0).toString(16).padStart(4,'0')} ACCESS_GRANTED`);
       }
 
-      lines.push(
-        "[✓] Lokasi ditemukan",
-        "[✓] Password berhasil diambil",
-        "[✓] Menjalankan penghapusan log...",
-        "",
-        "THIS ILLEGAL , Terimakasih telah memberikan nomor jadi saya dapat datanya"
-      );
+      lines.push(">> Lokasi ditemukan", ">> Koneksi berhasil.", ">> Sistem dikendalikan dari jarak jauh...", "TERMINAL CLOSED.");
 
       let index = 0;
 
@@ -361,64 +476,42 @@
         if (index < lines.length) {
           output.innerText += lines[index] + "\n";
           output.scrollTop = output.scrollHeight;
+          typeSound.currentTime = 0;
+          typeSound.play();
           index++;
-          setTimeout(typeLine, 70);
+          setTimeout(typeLine, 50);
+        } else {
+          showEndEffect();
         }
+      }
+
+      function showEndEffect() {
+        endSound.play();
+        document.body.classList.add("glitch");
+
+        setTimeout(() => {
+          document.body.classList.remove("glitch");
+
+          const container = document.getElementById("prankOutput");
+          container.innerHTML = `
+            <div style="text-align:center; animation: fadeIn 2s ease-out;">
+              <h1 style="font-size:3rem; color:#00ffcc; text-shadow:0 0 20px cyan; margin-bottom:20px;">AKSES DIBERIKAN</h1>
+              <div style="width: 100px; height: 100px; margin: 0 auto 20px auto; border: 2px solid #00ffcc; border-radius: 50%; animation: scan 2s infinite;"></div>
+              <p style="color:#00ffff; font-size:1.1rem; margin-bottom:30px;">Sistem berhasil dikendalikan.</p>
+              <button class="btn" onclick="backToMenu()">Kembali ke Menu</button>
+            </div>
+          `;
+        }, 1000);
+      }
+
+      function backToMenu() {
+        document.getElementById("prankOutput").style.display = "none";
+        document.getElementById("mainMenu").style.display = "flex";
+        document.getElementById("prankCode").innerText = "";
       }
 
       typeLine();
     }
   </script>
 </body>
-</html>￼Enter      },
-      retina_detect: true
-    });
-
-    function showHack() {
-      document.getElementById("mainMenu").style.display = "none";
-      document.getElementById("hackInput").style.display = "flex";
-    }
-
-    function startPrank() {
-      const number = document.getElementById("targetNumber").value.trim();
-      if (number === "") {
-        alert("Nomor target harus diisi!");
-        return;
-      }
-
-      document.getElementById("hackInput").style.display = "none";
-      document.getElementById("prankOutput").style.display = "flex";
-
-      const output = document.getElementById("prankCode");
-      output.innerText = "";
-
-      let lines = [
-        "Mengakses terminal...",
-        "Menembus firewall...",
-        "Bypassing otentikasi...",
-  "Mendeteksi port terbuka...",
-        "Menyusup ke sistem...",
-        "Mengambil hash password...",
-        "Melakukan brute force...",
-        "Menyalin berkas...",
-        "Mencuri cookies...",
-        "Menonaktifkan antivirus...",
-        "Menyembunyikan jejak...",
-        "Melakukan enkripsi balik...",
-        "Mengunggah ke server rahasia...",
-        "Mengakses terminal...",
-    "Menembus firewall...",
-    "Bypassing otentikasi...",
-    "Mendeteksi port terbuka...",
-    "Menyusup ke sistem...",
-    "Mengambil hash password...",
-    "Melakukan brute force...",
-    "Menyalin berkas...",
-    "Mencuri cookies...",
-    "Menonaktifkan antivirus...",
-    "Menyembunyikan jejak...",
-    "Melakukan enkripsi balik...",
-    "Mengunggah ke server rahasia...",
-      ];
-
-      for (let i = 0; i < 1000; i++) {
+</html>
