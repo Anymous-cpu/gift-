@@ -2,97 +2,111 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Website Download & Sumber</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🌈 Dunia Murid Lucu 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
-      scroll-behavior: smooth;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(to bottom right, #fff0f6, #e0f7fa);
+      color: #4a148c;
+      overflow-x: hidden;
+      animation: backgroundMove 20s linear infinite;
     }
 
-    body {
-      background: linear-gradient(to right, #1f1c2c, #928dab);
-      color: white;
-      text-align: center;
+    @keyframes backgroundMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
     }
 
     header {
-      padding: 80px 20px 40px;
+      background: linear-gradient(135deg, #f48fb1, #ce93d8);
+      padding: 2rem 1rem;
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-bottom: 4px dashed #fff;
     }
 
     header h1 {
-      font-size: 2.8em;
-      margin-bottom: 10px;
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px #ec407a;
     }
 
-    .nav-buttons {
-      margin-top: 20px;
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      position: relative;
     }
 
-    .nav-buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 30px;
-      font-size: 1em;
-      border-radius: 50px;
-      text-decoration: none;
-      background: white;
-      color: #333;
+    .link-box {
+      background: #fce4ec;
+      border: 2px dashed #f8bbd0;
+      border-radius: 15px;
+      padding: 1rem;
+      margin: 1rem 0;
       transition: all 0.3s ease;
+      position: relative;
     }
 
-    .nav-buttons a:hover {
-      background: #ff5f6d;
-      color: white;
-      transform: scale(1.1);
+    .link-box:hover {
+      background: #f8bbd0;
+      transform: scale(1.03) rotate(-1deg);
     }
 
-    section {
-      padding: 60px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    section h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      color: #ffe;
-    }
-
-    .download-list a {
-      display: block;
-      margin: 10px 0;
-      padding: 12px 20px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+    a {
       text-decoration: none;
-      border-radius: 10px;
-      transition: background 0.3s ease;
+      color: #c2185b;
+      font-weight: bold;
     }
 
-    .download-list a:hover {
-      background: rgba(255, 255, 255, 0.3);
+    .admin-box {
+      background-color: #fff3f7;
+      border: 2px dotted #f48fb1;
+      padding: 1rem;
+      border-radius: 15px;
+      text-align: center;
+      margin-top: 2rem;
     }
 
     footer {
-      margin-top: 50px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      font-size: 0.9em;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      margin-top: 2rem;
+      padding-bottom: 2rem;
     }
 
+    /* Emoji animation */
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-20px) rotate(15deg); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+
+    /* Responsive */
     @media (max-width: 600px) {
       header h1 {
-        font-size: 2em;
+        font-size: 2rem;
       }
-
-      .nav-buttons a {
-        display: block;
-        width: 80%;
-        margin: 10px auto;
+      .container {
+        margin: 1rem;
       }
     }
   </style>
@@ -100,54 +114,56 @@
 <body>
 
   <header>
-    <h1>Selamat Datang di Website Kami</h1>
-    <p>Pilih menu di bawah untuk mulai</p>
-    <div class="nav-buttons">
-      <a href="#download">DOWNLOAD</a>
-      <a href="#tutorial">TUTORIAL DOWNLOAD</a>
-      <a href="#sumber">SUMBER</a>
-    </div>
+    <h1>🌸 Dunia Murid Lucu 🌈</h1>
   </header>
 
-  <section id="download">
-    <h2>Download APK</h2>
-    <div class="download-list">
-      <a href="https://sfl.gl/TKG3n" target="_blank">MT MANAGER</a>
-      <a href="https://sfl.gl/IWi3q9" target="_blank">APK PS</a>
-      <a href="https://sfl.gl/zM7w7kqJ" target="_blank">APK PUSHKONTAK</a>
-      <a href="https://sfl.gl/wi6309" target="_blank">APK AUTO SAVE KONTAK</a>
-      <a href="https://sfl.gl/veRGk" target="_blank">APK QRIS ALL PAY NO KTP</a>
-      <a href="https://sfl.gl/1orvbC" target="_blank">APK BEKU PAYMENT</a>
-      <a href="https://sfl.gl/w1fSg0Jx" target="_blank">APK JPM DERES++</a>
-      <a href="https://sfl.gl/kijaCFQP" target="_blank">APK BANNED & UNBANNED NUMBER</a>
-      <a href="https://sfl.gl/5GMXecA" target="_blank">APK BIOSKOP</a>
-      <a href="https://sfl.gl/YTbckHS" target="_blank">APK ROG</a>
-      <a href="https://sfl.gl/ytQF" target="_blank">WEBSITE NOKOS</a>
-      <a href="https://sfl.gl/o4Oyq" target="_blank">FILE BADAK</a>
+  <div class="container">
+    <div class="link-box">
+      💫 <strong>Saluran Utama:</strong><br>
+      <a href="https://whatsapp.com/channel/0029VbAoUUXGehEUK3sXjq0J" target="_blank">Join Sekarang 💌</a>
     </div>
-  </section>
 
-  <section id="tutorial">
-    <h2>Tutorial Download</h2>
-    <p>
-      Tonton video tutorial lengkap di sini:<br>
-      <a href="https://youtu.be/_4A_SQxGU_U?si=WqMhCURZaPXKu8Z4" target="_blank" style="color: #ffcc00; text-decoration: underline;">https://youtu.be/_4A_SQxGU_U</a>
-    </p>
-  </section>
+    <div class="link-box">
+      💫 <strong>Grup murnok + mursun:</strong><br>
+      <a href="https://chat.whatsapp.com/CxsxA72RvlL5ePO5oix06y" target="_blank">Masuk ke Grup 🍬</a>
+    </div>
 
-  <section id="sumber">
-    <h2>Sumber dan Channel</h2>
-    <p>
-      Join channel WhatsApp kami:<br>
-      <a href="https://whatsapp.com/channel/0029VbARAiMH5JLphjfsLh1g" target="_blank" style="color: #00ffcc; text-decoration: underline;">
-        https://whatsapp.com/channel/0029VbARAiMH5JLphjfsLh1g
-      </a>
-    </p>
-    <p style="margin-top: 20px;">JANGAN LUPA SUPPORT KAMI YA 🤗</p>
-  </section>
+    <div class="link-box">
+      💫 <strong>Grup murid  up dabis:</strong><br>
+      <a href="https://chat.whatsapp.com/GZJplOeIuUL00hE41jtDaS" target="_blank">Klik Gabung 🍭</a>
+    </div>
+
+    <div class="link-box">
+      💫 <strong>Grup murid unbanned & banned:</strong><br>
+      <a href="https://chat.whatsapp.com/GQK1M4FDevY2jvwcq9GlW2" target="_blank">Join Disini 🍓</a>
+    </div>
+
+    <div class="link-box">
+      💫 <strong>Grup murid website:</strong><br>
+      <a href="https://chat.whatsapp.com/E4eF2EnYkydHmIlvwY17En" target="_blank">Gabung Sekarang 🍪</a>
+    </div>
+    
+    <div class="link-box">
+      💫 <strong>Grup murid logo:</strong><br>
+      <a href="https://chat.whatsapp.com/JeGLbkmLAyO9MywrrLwwXh" target="_blank">Gabung Sekarang 🍒</a>
+    </div>
+
+    <div class="admin-box">
+      👤 <strong>NO ADMIN:</strong><br>
+      <a href="https://wa.me/6289517546710" target="_blank">Klik untuk Chat 📱</a>
+      <p><strong>JOIN SALURAN UTAMA</strong><br>BIAR TAU INFO MURID SELANJUTNYA ✨</p>
+    </div>
+  </div>
+
+  <!-- Floating emojis -->
+  <div class="emoji" style="top:10%; left:5%;">🌸</div>
+  <div class="emoji" style="top:20%; right:5%;">🎀</div>
+  <div class="emoji" style="bottom:15%; left:10%;">🍭</div>
+  <div class="emoji" style="bottom:10%; right:10%;">💫</div>
+  <div class="emoji" style="top:30%; left:40%;">🧸</div>
 
   <footer>
-    &copy; 2025 Website Tutorial & Download. All rights reserved.
+    🌷 Dibuat dengan penuh cinta oleh Murid Lucu 2025
   </footer>
 
 </body>
