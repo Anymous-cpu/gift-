@@ -2,169 +2,148 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🌈 Dunia Murid Lucu 🌸</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MT COMUNITY — SULTHAN MODE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      font-family: 'Comic Neue', cursive;
-      background: linear-gradient(to bottom right, #fff0f6, #e0f7fa);
-      color: #4a148c;
-      overflow-x: hidden;
-      animation: backgroundMove 20s linear infinite;
-    }
-
-    @keyframes backgroundMove {
-      0% { background-position: 0 0; }
-      100% { background-position: 100% 100%; }
-    }
-
-    header {
-      background: linear-gradient(135deg, #f48fb1, #ce93d8);
-      padding: 2rem 1rem;
+      background: radial-gradient(circle at top, #000000, #111111);
+      color: #ffffff;
+      font-family: 'Black Ops One', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
       text-align: center;
-      color: white;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border-bottom: 4px dashed #fff;
     }
 
-    header h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 2.5rem;
-      text-shadow: 2px 2px #ec407a;
+    .title {
+      font-family: 'UnifrakturCook', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      color: #ff0000;
+      text-shadow: 0 0 8px #ff0000, 0 0 25px #ff0000, 0 0 50px #ff0000;
+      animation: blink 1.2s infinite alternate;
     }
 
-    .container {
+    .subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      color: #f0f0f0;
+      font-style: italic;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px;
+      margin: 15px 0;
+      border: 2px solid #ff0000;
+      border-radius: 12px;
+      width: 95%;
       max-width: 600px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-      position: relative;
-    }
-
-    .link-box {
-      background: #fce4ec;
-      border: 2px dashed #f8bbd0;
-      border-radius: 15px;
-      padding: 1rem;
-      margin: 1rem 0;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .link-box:hover {
-      background: #f8bbd0;
-      transform: scale(1.03) rotate(-1deg);
+      box-shadow: 0 0 15px #ff0000a1;
     }
 
     a {
-      text-decoration: none;
-      color: #c2185b;
+      color: #00f7ff;
       font-weight: bold;
+      text-decoration: none;
     }
 
-    .admin-box {
-      background-color: #fff3f7;
-      border: 2px dotted #f48fb1;
-      padding: 1rem;
-      border-radius: 15px;
-      text-align: center;
-      margin-top: 2rem;
+    a:hover {
+      color: #ff007b;
+      text-shadow: 0 0 10px #ff007b;
     }
 
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #888;
-      margin-top: 2rem;
-      padding-bottom: 2rem;
+    .divider {
+      margin: 20px 0;
+      font-size: 1.2rem;
+      color: #ff0000;
+      text-shadow: 0 0 6px #ff0000;
     }
 
-    /* Emoji animation */
-    .emoji {
-      position: absolute;
-      font-size: 24px;
-      animation: float 6s infinite ease-in-out;
+    @keyframes blink {
+      from { opacity: 1; }
+      to { opacity: 0.4; }
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0); }
-      50% { transform: translateY(-20px) rotate(15deg); }
-      100% { transform: translateY(0) rotate(0); }
+    @keyframes fire {
+      0% { text-shadow: 0 0 5px red, 0 0 10px orange; }
+      50% { text-shadow: 0 0 20px red, 0 0 30px orange; }
+      100% { text-shadow: 0 0 5px red, 0 0 10px orange; }
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .container {
-        margin: 1rem;
-      }
+    .fire-text {
+      animation: fire 1s infinite;
+      color: #ffa500;
     }
+
+    .real-line {
+      font-size: 1.1rem;
+      background: linear-gradient(90deg, #ff007f, #ff0000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      text-shadow: 0 0 8px #ff0080;
+    }
+
+    .quote {
+      font-size: 1rem;
+      font-style: italic;
+      margin-top: 20px;
+      color: #ccc;
+    }
+
+    .decor {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      color: #ff0000;
+      text-shadow: 0 0 10px red;
+    }
+
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🌸 Dunia Murid Lucu 🌈</h1>
-  </header>
+  <div class="title">𝙒𝙀 𝘿𝙊𝙉'𝙏 𝙅𝙐𝙎𝙏 𝘽𝙐𝙄𝙇𝘿 𝘼 𝙂𝙍𝙊𝙐𝙋</div>
+  <div class="title">𝙒𝙀 𝘿𝙊𝙈𝙄𝙉𝘼𝙏𝙀. ☠️🔥</div>
 
-  <div class="container">
-    <div class="link-box">
-      💫 <strong>Saluran Utama:</strong><br>
-      <a href="https://whatsapp.com/channel/0029VbAoUUXGehEUK3sXjq0J" target="_blank">Join Sekarang 💌</a>
-    </div>
+  <div class="subtitle">꒰ঌ𖤐𓆩 <strong>MT COMUNITY</strong> 𓆪𖤐໒꒱</div>
+  <div class="decor">🜸━═━┈⛧┈━═━🜸</div>
 
-    <div class="link-box">
-      💫 <strong>Grup murnok + mursun:</strong><br>
-      <a href="https://chat.whatsapp.com/CxsxA72RvlL5ePO5oix06y" target="_blank">Masuk ke Grup 🍬</a>
-    </div>
-
-    <div class="link-box">
-      💫 <strong>Grup murid  up dabis:</strong><br>
-      <a href="https://chat.whatsapp.com/GZJplOeIuUL00hE41jtDaS" target="_blank">Klik Gabung 🍭</a>
-    </div>
-
-    <div class="link-box">
-      💫 <strong>Grup murid unbanned & banned:</strong><br>
-      <a href="https://chat.whatsapp.com/GQK1M4FDevY2jvwcq9GlW2" target="_blank">Join Disini 🍓</a>
-    </div>
-
-    <div class="link-box">
-      💫 <strong>Grup murid website:</strong><br>
-      <a href="https://chat.whatsapp.com/E4eF2EnYkydHmIlvwY17En" target="_blank">Gabung Sekarang 🍪</a>
-    </div>
-    
-    <div class="link-box">
-      💫 <strong>Grup murid logo:</strong><br>
-      <a href="https://chat.whatsapp.com/JeGLbkmLAyO9MywrrLwwXh" target="_blank">Gabung Sekarang 🍒</a>
-    </div>
-
-    <div class="admin-box">
-      👤 <strong>NO ADMIN:</strong><br>
-      <a href="https://wa.me/6289517546710" target="_blank">Klik untuk Chat 📱</a>
-      <p><strong>JOIN SALURAN UTAMA</strong><br>BIAR TAU INFO MURID SELANJUTNYA ✨</p>
-    </div>
+  <div class="section">
+    <h2 class="fire-text">𖦹 ⋆｡˚☽ 𝐂𝐇𝐀𝐍𝐍𝐄𝐋 𝐈𝐍𝐓𝐈 ☾˚｡⋆ 𖦹</h2>
+    <p>📚 <a href="https://whatsapp.com/channel/0029VbAoUUXGehEUK3sXjq0J" target="_blank">Klik Masuk Channel</a></p>
+    <div class="divider">❂▁▂▃▄▅▆▇█▇▆▅▄▃▂▁❂</div>
   </div>
 
-  <!-- Floating emojis -->
-  <div class="emoji" style="top:10%; left:5%;">🌸</div>
-  <div class="emoji" style="top:20%; right:5%;">🎀</div>
-  <div class="emoji" style="bottom:15%; left:10%;">🍭</div>
-  <div class="emoji" style="bottom:10%; right:10%;">💫</div>
-  <div class="emoji" style="top:30%; left:40%;">🧸</div>
+  <div class="section">
+    <h2>𓊈𒆜༆ 𝐌𝐀𝐑𝐊𝐄𝐓 𝐏𝐋𝐀𝐂𝐄 ༆𒆜𓊉</h2>
+    <p>💸 <a href="https://chat.whatsapp.com/CxsxA72RvlL5ePO5oix06y" target="_blank">Join Market🔥</a></p>
+    <p>✦͙͛˚₊⊹ <strong>𝙁𝙄𝙍𝙀 𝘿𝙀𝘼𝙇𝙎. 𝙁𝘼𝙎𝙏 𝙋𝙇𝘼𝙔.</strong> ⊹₊˚͙͛✦</p>
+  </div>
 
-  <footer>
-    🌷 Dibuat dengan penuh cinta oleh Murid Lucu 2025
-  </footer>
+  <div class="section">
+    <h2 class="real-line">✦⭒𖤓⊹𖥔 𝚃𝙴𝚂𝚃𝙸𝙼𝙾𝙽𝙸 𝙍𝙀𝙰𝙇 𝙇𝙄𝙉𝙀 ⊹𖥔⊹𖤓⭒✦</h2>
+    <p>🏘️ <a href="https://whatsapp.com/channel/0029Vb6cYqU9WtC5B61Vgm1o" target="_blank">Lihat Testimoni 🔥</a></p>
+    <div class="decor">꩜══ஓ๑♡๑ஓ══꩜</div>
+  </div>
 
+  <div class="section">
+    <h2>🆓 ALL INFO MURID FREE :</h2>
+    <p><a href="https://chat.whatsapp.com/GHPqpsh6Iyf7EQeqSpzZ9H" target="_blank">Gabung Grup Belajar</a></p>
+  </div>
+
+  <div class="quote">
+    _“𝐉𝐚𝐧𝐠𝐚𝐧 𝐢𝐤𝐮𝐭𝐢 𝐚𝐫𝐮𝐬, 𝐣𝐚𝐝𝐢𝐤𝐚𝐧 𝐤𝐚𝐦𝐢 𝐛𝐚𝐠𝐚𝐢 𝐨𝐦𝐛𝐚𝐤 𝐲𝐚𝐧𝐠 𝐦𝐞𝐧𝐞𝐥𝐚𝐧.”_
+  </div>
+
+  <div class="decor">𖣔𖠿𖣔</div>
 </body>
 </html>
