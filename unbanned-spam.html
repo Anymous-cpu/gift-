@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>UNBANNED SPAM - MT CRASHER</title>
+<style>
+  * {margin: 0; padding: 0; box-sizing: border-box;}
+  body, html {
+    height: 100%;
+    background: #0a123d;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e0f7fa;
+    overflow-x: hidden;
+  }
+  canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .wave-container {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    overflow: hidden;
+    z-index: 5;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, #0277bd 0%, #81d4fa 50%, #0277bd 100%);
+    opacity: 0.3;
+    border-radius: 35% 50% 0 0;
+    animation: waveMove 8s linear infinite;
+  }
+  .wave:nth-child(2) { animation-delay: -4s; opacity: 0.2; }
+  @keyframes waveMove {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-50%);}
+  }
+  header {
+    z-index: 10;
+    position: relative;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 2rem 0 1rem;
+    text-shadow: 0 0 10px #4fc3f7;
+  }
+  .container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  input, select {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    width: 80%;
+    max-width: 400px;
+  }
+  button {
+    margin-top: 1rem;
+    background: #0288d1;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(2,136,209,0.6);
+  }
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px #81d4fa;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles-js"></canvas>
+<canvas id="leaves-js"></canvas>
+
+<header>UNBANNED SPAM</header>
+<div class="container">
+  <label for="numberInput">Masukkan Nomor Target:</label>
+  <input type="text" id="numberInput" placeholder="+62xxxxxxxxxxx">
+
+  <label for="templateSelect">Pilih Versi Banding:</label>
+  <select id="templateSelect"></select>
+
+  <button onclick="copyToClipboard()">Salin & Buka Email</button>
+  <button onclick="location.href='peninjauan.html'">KEMBALI</button>
+</div>
+
+<div class="wave-container">
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+<script>
+  // Teks banding 20 versi
+  const templates = [
+    "Hello, my WhatsApp account linked to {number} appears to be banned. I sincerely ask that you review this as I never intended to violate your guidelines. If there was a misunderstanding, I kindly ask for a second chance.",
+    "Hola, el número {number} fue restringido y no sé por qué. Agradecería que revisaran este caso y reactivaran el acceso si fue un error. Muchas gracias por su tiempo.",
+    "Bonjour, je n'ai pas enfreint vos règles, mais mon compte WhatsApp lié au {number} a été bloqué. Je vous prie de le vérifier et d'annuler le blocage s'il a été fait par erreur.",
+    "Merhaba, {number} numaralı WhatsApp hesabım engellendi. Spam yaptığım düşünülüyorsa da bu kasıtlı değildi. Hesabımın tekrar etkinleştirilmesini rica ediyorum.",
+    "Hallo, bitte überprüfen Sie den Bann meines Kontos mit der Nummer {number}. Ich glaube, es handelt sich um ein Missverständnis. Danke für Ihre Hilfe.",
+    "Olá, minha conta vinculada ao número {number} foi suspensa. Por favor, reavaliem o caso, pois não houve nenhuma intenção de violar as diretrizes.",
+    "Ciao, chiedo gentilmente la revisione della sospensione del numero {number}. Se ho infranto qualche regola, mi scuso e prometto di non repetirlo.",
+    "Здравствуйте, мой номер {number} был заблокирован. Я не нарушал правила, пожалуйста, пересмотрите это решение. Заранее благодарю.",
+    "こんにちは、{number} のアカウントが制限されました。スパムの意図はなく、誤解があったかもしれません。ご確認をお願いします。",
+    "안녕하세요. {number} 번호가 차단되었습니다. 오해일 수 있으니 다시 검토해주시고, 복구를 요청드립니다.",
+    "Hej, mitt konto med nummer {number} har blivit blockerat. Jag tror att det är ett misstag och skulle uppskatta om ni kunde se över detta.",
+    "Cześć, numer {number} został zablokowany. Proszę o ponowne rozpatrzenie tej decyzji, ponieważ nie doszło do celowego naruszenia.",
+    "Salam, hesabım {number} nömrəsi ilə bloklanıb. Səbəbini anlamıram və sizdən bu vəziyyəti nəzərdən keçirməyinizi xahiş edirəm.",
+    "Hallo, WhatsApp hesabım {number} spam nedeniyle kısıtlandı. Lütfen bu konuda yardım edin, çünkü bu bir yanlış anlaşılma olabilir.",
+    "Oi, meu número {number} foi sinalizado injustamente. Não tive intenção de causar spam. Por favor, analisem meu caso.",
+    "Salut, numărul {number} a fost suspendat. Nu am încălcat nicio regulă intenționat. Vă rog să reconsiderați restricția.",
+    "Hi, my WhatsApp linked to {number} got banned mistakenly. Please check and unblock my account.",
+    "Hallo, mein WhatsApp-Konto mit der Nummer {number} wurde gesperrt. Ich bitte um Überprüfung und Entsperrung.",
+    "Bonjour, mon compte WhatsApp lié au numéro {number} a été suspendu par erreur. Merci de le débloquer.",
+    "Ciao, il mio account WhatsApp con numero {number} è stato bloccato ingiustamente. Vi prego di riattivarlo."
+  ];
+
+  const select = document.getElementById("templateSelect");
+  templates.forEach((template, index) => {
+    const option = document.createElement("option");
+    option.value = template;
+    option.text = `V${index + 1}`;
+    select.appendChild(option);
+  });
+
+  function copyToClipboard() {
+    const number = document.getElementById("numberInput").value.trim();
+    if (!number) {
+      alert("Masukkan nomor target terlebih dahulu!");
+      return;
+    }
+    const selectedTemplate = select.value.replace(/{number}/g, number);
+    navigator.clipboard.writeText(selectedTemplate).then(() => {
+    	window.location.href = `mailto:support@support.whatsapp.com,smb_web@support.whatsapp.com,android@support.whatsapp.com?subject=Permohonan Unban   body={encodeURIComponent(selectedTemplate)}`;
+    });
+  }
+</script>
+
+<script>
+  // Partikel api biru
+  const canvas = document.getElementById('particles-js');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = h + Math.random() * 100;
+      this.size = 1 + Math.random() * 2;
+      this.speed = 0.5 + Math.random() * 1.5;
+      this.angle = Math.random() * Math.PI * 2;
+      this.alpha = 0.05 + Math.random() * 0.15;
+    }
+    update() {
+      this.y -= this.speed;
+      this.x += Math.sin(this.angle) * 0.5;
+      this.alpha -= 0.002;
+      if (this.alpha <= 0 || this.y < -10) this.reset();
+    }
+    draw() {
+      const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 8);
+      g.addColorStop( 0, 'rgba(0,150,255,' + this.alpha + ')');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  const particles = Array.from({length: 100}, () => new Particle());
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+
+<script>
+  // Part 2: Falling Leaves Effect
+  const leafCanvas = document.getElementById('leaves-js');
+  const leafCtx = leafCanvas.getContext('2d');
+  function leafResize() {
+  	leafCanvas.width = window.innerWidth;
+    leafCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', leafResize);
+  leafResize();
+
+  class Leaf {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * leafCanvas.width;
+      this.y = Math.random() * -leafCanvas.height;
+      this.size = 10 + Math.random() * 15;
+      this.speed = 0.5 + Math.random() * 1.2;
+      this.angle = Math.random() * 2 * Math.PI;
+      this.spinSpeed = (Math.random() - 0.5) * 0.02;
+      this.opacity = 0.3 + Math.random() * 0.4;
+      this.color1 = 'rgba(0,191,255,' + this.opacity + ')';
+      this.color2 = 'rgba(135,206,250,' + this.opacity + ')';
+    }
+    update() {
+      this.y += this.speed;
+      this.x += Math.sin(this.angle) * 0.7;
+      this.angle += this.spinSpeed;
+      if (this.y > leafCanvas.height + this.size) this.reset();
+      if (this.x > leafCanvas.width + this.size) this.x = -this.size;
+      if (this.x < -this.size) this.x = leafCanvas.width + this.size;
+    }
+    draw() {
+      leafCtx.save();
+      leafCtx.translate(this.x, this.y);
+      leafCtx.rotate(this.angle);
+
+      let grad = leafCtx.createLinearGradient(-this.size/2, 0, this.size/2, 0);
+      grad.addColorStop(0, this.color1);
+      grad.addColorStop(1, this.color2);
+      leafCtx.fillStyle = grad;
+      leafCtx.beginPath();
+     leafCtx.ellipse(0, 0, this.size / 2,
+this.size / 3, 0, 0, 2 * Math.PI);
+      leafCtx.fill();
+      leafCtx.restore();
+    }
+  }
+
+  let leavesArray = [];
+  for (let i = 0; i < 30; i++) {
+    leavesArray.push(new Leaf());
+  }
+
+  function animateLeaves() {
+    leafCtx.clearRect(0, 0, leafCanvas.width, leafCanvas.height);
+    leavesArray.forEach(leaf => {
+      leaf.update();
+      leaf.draw();
+    });
+    requestAnimationFrame(animateLeaves);
+  }
+  animateLeaves();
+</script>
+</body>
+</html>

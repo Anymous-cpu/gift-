@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RESET OTP - MT CRASHER</title>
+<style>
+  * {margin: 0; padding: 0; box-sizing: border-box;}
+  body, html {
+    height: 100%;
+    background: #0a123d;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e0f7fa;
+    overflow-x: hidden;
+  }
+  canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .wave-container {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    overflow: hidden;
+    z-index: 5;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, #0277bd 0%, #81d4fa 50%, #0277bd 100%);
+    opacity: 0.3;
+    border-radius: 35% 50% 0 0;
+    animation: waveMove 8s linear infinite;
+  }
+  .wave:nth-child(2) { animation-delay: -4s; opacity: 0.2; }
+  @keyframes waveMove {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(-50%);}
+  }
+  header {
+    z-index: 10;
+    position: relative;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 2rem 0 1rem;
+    text-shadow: 0 0 10px #4fc3f7;
+  }
+  .container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  input, select {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    width: 80%;
+    max-width: 400px;
+  }
+  button {
+    margin-top: 1rem;
+    background: #0288d1;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(2,136,209,0.6);
+  }
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px #81d4fa;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles-js"></canvas>
+<canvas id="leaves-js"></canvas>
+
+<header>RESET OTP</header>
+<div class="container">
+  <label for="numberInput">Masukkan Nomor Target:</label>
+  <input type="text" id="numberInput" placeholder="+62xxxxxxxxxxx">
+
+  <label for="templateSelect">Pilih Versi Banding:</label>
+  <select id="templateSelect"></select>
+
+  <button onclick="copyToClipboard()">Salin & Buka Email</button>
+  <button onclick="location.href='index.html'">KEMBALI KE BERANDA</button>
+</div>
+
+<div class="wave-container">
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+
+<script>
+  // Teks banding 20 versi
+const templates = [
+  "Bonjour, je n'arrive plus à recevoir le code de vérification sur le numéro {number}. Pourriez-vous réinitialiser le processus s'il vous plaît ?",
+  "Hello, I’m not receiving any OTP on my number {number}. Kindly reset the verification system for my account access.",
+  "Hola, no puedo recibir el código de acceso en el número {number}. Por favor, restablezcan el proceso de verificación.",
+  "Hallo, ich bekomme keinen Bestätigungscode an {number}. Bitte setzen Sie den OTP-Prozess für mein Konto zurück.",
+  "Ciao, non ricevo il codice di accesso al numero {number}. Vi chiedo gentilmente di ripristinare la verifica.",
+  "Olá, meu número {number} não está recebendo o código de verificação. Por favor, reinicie o sistema de OTP.",
+  "Привет, я не получаю код подтверждения на номер {number}. Пожалуйста, перезапустите процесс верификации.",
+  "こんにちは、{number} に確認コードが届きません。再送信をお願いいたします。",
+  "안녕하세요. {number} 번호로 인증 코드가 오지 않습니다. 확인 절차를 초기화해주세요.",
+  "Hej, jag får inga verifieringskoder på {number}. Vänligen återställ OTP-processen.",
+  "Cześć, nie otrzymuję kodów OTP na numer {number}. Proszę o zresetowanie procesu weryfikacji.",
+  "Merhaba, {number} numarama doğrulama kodu ulaşmıyor. OTP sisteminin sıfırlanmasını talep ediyorum.",
+  "Salam, saya tidak menerima kode verifikasi ke {number}. Mohon reset ulang proses verifikasinya.",
+   "Oi, não estou conseguindo receber o código no número {number}. Por favor, verifiquem e reiniciem o sistema de envio.",
+   "Salut, je suis bloqué car le numéro {number} ne reçoit aucun code. Merci de réinitialiser.",
+   "Hola, intento verificar el número {number} pero no llega el código. ¿Pueden revisar el envío?",
+   "Hallo, mit der Nummer {number} kommt kein OTP an. Ich bitte um Rücksetzung.",
+   "Cześć, {number} nie otrzymuje żadnych wiadomości OTP. Proszę o ponowną aktywację systemu.",
+   "Olá, por favor, resetem o sistema de envio OTP para o número {number}, não recebo nenhuma mensagem.",
+   "Hello, I’ve waited hours but still no verification code to {number}. Please investigate and reset the process."
+];
+  const select = document.getElementById("templateSelect");
+  templates.forEach((template, index) => {
+    const option = document.createElement("option");
+    option.value = template;
+    option.text = `V${index + 1}`;
+    select.appendChild(option);
+  });
+
+  function copyToClipboard() {
+    const number = document.getElementById("numberInput").value.trim();
+    if (!number) {
+      alert("Masukkan nomor target terlebih dahulu!");
+      return;
+    }
+    const selectedTemplate = select.value.replace(/{number}/g, number);
+    navigator.clipboard.writeText(selectedTemplate).then(() => {
+    	window.location.href = `mailto:support@support.whatsapp.com,smb_web@support.whatsapp.com,android@support.whatsapp.com?subject=Permohonan Unban   body={encodeURIComponent(selectedTemplate)}`;
+    });
+  }
+</script>
+
+<script>
+  // Partikel api biru
+  const canvas = document.getElementById('particles-js');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = h + Math.random() * 100;
+      this.size = 1 + Math.random() * 2;
+      this.speed = 0.5 + Math.random() * 1.5;
+      this.angle = Math.random() * Math.PI * 2;
+      this.alpha = 0.05 + Math.random() * 0.15;
+    }
+    update() {
+      this.y -= this.speed;
+      this.x += Math.sin(this.angle) * 0.5;
+      this.alpha -= 0.002;
+      if (this.alpha <= 0 || this.y < -10) this.reset();
+    }
+    draw() {
+      const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 8);
+      g.addColorStop( 0, 'rgba(0,150,255,' + this.alpha + ')');
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  const particles = Array.from({length: 100}, () => new Particle());
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+</script>
+
+<script>
+  // Part 2: Falling Leaves Effect
+  const leafCanvas = document.getElementById('leaves-js');
+  const leafCtx = leafCanvas.getContext('2d');
+  function leafResize() {
+  	leafCanvas.width = window.innerWidth;
+    leafCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', leafResize);
+  leafResize();
+
+  class Leaf {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * leafCanvas.width;
+      this.y = Math.random() * -leafCanvas.height;
+      this.size = 10 + Math.random() * 15;
+      this.speed = 0.5 + Math.random() * 1.2;
+      this.angle = Math.random() * 2 * Math.PI;
+      this.spinSpeed = (Math.random() - 0.5) * 0.02;
+      this.opacity = 0.3 + Math.random() * 0.4;
+      this.color1 = 'rgba(0,191,255,' + this.opacity + ')';
+      this.color2 = 'rgba(135,206,250,' + this.opacity + ')';
+    }
+    update() {
+      this.y += this.speed;
+      this.x += Math.sin(this.angle) * 0.7;
+      this.angle += this.spinSpeed;
+      if (this.y > leafCanvas.height + this.size) this.reset();
+      if (this.x > leafCanvas.width + this.size) this.x = -this.size;
+      if (this.x < -this.size) this.x = leafCanvas.width + this.size;
+    }
+    draw() {
+      leafCtx.save();
+      leafCtx.translate(this.x, this.y);
+      leafCtx.rotate(this.angle);
+
+      let grad = leafCtx.createLinearGradient(-this.size/2, 0, this.size/2, 0);
+      grad.addColorStop(0, this.color1);
+      grad.addColorStop(1, this.color2);
+      leafCtx.fillStyle = grad;
+      leafCtx.beginPath();
+     leafCtx.ellipse(0, 0, this.size / 2,
+this.size / 3, 0, 0, 2 * Math.PI);
+      leafCtx.fill();
+      leafCtx.restore();
+    }
+  }
+
+  let leavesArray = [];
+  for (let i = 0; i < 30; i++) {
+    leavesArray.push(new Leaf());
+  }
+
+  function animateLeaves() {
+    leafCtx.clearRect(0, 0, leafCanvas.width, leafCanvas.height);
+    leavesArray.forEach(leaf => {
+      leaf.update();
+      leaf.draw();
+    });
+    requestAnimationFrame(animateLeaves);
+  }
+  animateLeaves();
+</script>
+</body>
+</html>
