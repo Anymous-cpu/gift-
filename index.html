@@ -1,383 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝕯𝖊𝖘𝖙𝖗𝖔𝖞𝖊𝖗 𝕸𝖆𝖘𝖙𝖊𝖗 V1.0.0 VIP | Angelic Evil</title>
-    <style>
-        :root {
-            --primary: #6a0dad;
-            --secondary: #ff00ff;
-            --dark: #1a001a;
-            --light: #f0e6ff;
-            --accent: #ff1493;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Courier New', monospace;
-        }
-        
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(106, 13, 173, 0.2) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.2) 0%, transparent 20%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 30px 0;
-            border-bottom: 2px solid var(--secondary);
-            margin-bottom: 40px;
-            position: relative;
-        }
-        
-        header::before, header::after {
-            content: "✧";
-            position: absolute;
-            bottom: -15px;
-            color: var(--accent);
-            font-size: 24px;
-        }
-        
-        header::before {
-            left: 20%;
-        }
-        
-        header::after {
-            right: 20%;
-        }
-        
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
-        }
-        
-        h2 {
-            font-size: 2rem;
-            margin: 20px 0;
-            color: var(--secondary);
-            border-left: 4px solid var(--accent);
-            padding-left: 10px;
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            margin: 15px 0;
-            color: var(--light);
-        }
-        
-        .tagline {
-            font-style: italic;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .product-card {
-            background: rgba(26, 0, 26, 0.7);
-            border: 1px solid var(--primary);
-            border-radius: 10px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(106, 13, 173, 0.5);
-            border-color: var(--accent);
-        }
-        
-        .product-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent, transparent, transparent,
-                rgba(255, 20, 147, 0.1)
-            );
-            transform: rotate(30deg);
-            z-index: -1;
-        }
-        
-        .price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent);
-            margin: 15px 0;
-        }
-        
-        .badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            text-align: center;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
-        }
-        
-        .btn-block {
-            display: block;
-            width: 100%;
-        }
-        
-        .note {
-            font-size: 0.9rem;
-            color: var(--secondary);
-            margin-top: 5px;
-        }
-        
-        .community {
-            margin: 50px 0;
-            background: rgba(26, 0, 26, 0.5);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid var(--primary);
-        }
-        
-        .community-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .community-link {
-            flex: 1;
-            min-width: 250px;
-            background: rgba(106, 13, 173, 0.2);
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid var(--secondary);
-            transition: all 0.3s ease;
-        }
-        
-        .community-link:hover {
-            background: rgba(255, 0, 255, 0.2);
-            transform: translateY(-3px);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            margin-top: 50px;
-            border-top: 1px solid var(--primary);
-            color: var(--secondary);
-        }
-        
-        .glitch {
-            animation: glitch 1s linear infinite;
-        }
-        
-        @keyframes glitch {
-            0% {
-                text-shadow: 2px 0 var(--secondary), -2px 0 var(--accent);
-            }
-            25% {
-                text-shadow: -2px 0 var(--secondary), 2px 0 var(--accent);
-            }
-            50% {
-                text-shadow: 2px 0 var(--accent), -2px 0 var(--secondary);
-            }
-            75% {
-                text-shadow: -2px 0 var(--accent), 2px 0 var(--secondary);
-            }
-            100% {
-                text-shadow: 2px 0 var(--secondary), -2px 0 var(--accent);
-            }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 20, 147, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 15px rgba(255, 20, 147, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 20, 147, 0);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MT CRASHER WHATSAP</title>
+<style>
+  /* Reset & base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    background: #0a123d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #cce6ff;
+    overflow-x: hidden;
+  }
+
+  /* Container */
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  header {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 10px #4fc3f7, 0 0 20px #0288d1;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav ul li {
+    background: linear-gradient(145deg, #0288d1, #01579b);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #e0f7fa;
+    box-shadow: 0 4px 15px rgba(2, 136, 209, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  nav ul li:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px #81d4fa;
+  }
+
+  /* Blue Flame Drift Particles */
+  canvas#particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Falling leaves canvas */
+  canvas#leaves-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Wave background bottom */
+  .wave-container {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    overflow: hidden;
+    z-index: 5;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, #0277bd 0%, #81d4fa 50%, #0277bd 100%);
+    opacity: 0.3;
+    border-radius: 35% 50% 0 0;
+    animation: waveMove 8s linear infinite;
+    transform-origin: center bottom;
+  }
+  .wave:nth-child(1) {
+    animation-delay: 0s;
+    bottom: 0;
+    opacity: 0.4;
+  }
+  .wave:nth-child(2) {
+    animation-delay: -4s;
+    bottom: 10px;
+    opacity: 0.25;
+  }
+
+  @keyframes waveMove {
+    0% {
+      transform: translateX(0) rotate(0deg);
+    }
+    100% {
+      transform: translateX(-50%) rotate(5deg);
+    }
+  }
+
+  /* POPUP INFO OVERLAY */
+  #info-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,18,61,0.95);
+    backdrop-filter: blur(5px);
+    display: none;
+    z-index: 100;
+    overflow-y: auto;
+  }
+  #info-popup {
+    background: #04294f;
+    max-width: 500px;
+    margin: 4rem auto;
+    border-radius: 20px;
+    padding: 2rem;
+    color: #cce6ff;
+    box-shadow: 0 0 20px #0288d1;
+  }
+  #info-popup h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 0 0 10px #0288d1;
+  }
+  #info-popup p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  #info-popup-content {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #0288d1;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #014a7a, #0365b3);
+  }
+  #info-popup label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  #info-popup input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+
+  #close-popup-btn {
+    display: none;
+    background: #0288d1;
+    color: #e0f7fa;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 4px 15px rgba(2,136,209,0.7);
+    transition: background 0.3s ease;
+  }
+  #close-popup-btn:hover {
+    background: #81d4fa;
+    box-shadow: 0 6px 25px #81d4fa;
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="glitch">𝕯𝖊𝖘𝖙𝖗𝖔𝖞𝖊𝖗 𝕸𝖆𝖘𝖙𝖊𝖗 V1.0.0 VIP</h1>
-            <p class="tagline">Angelic Evil - The Ultimate Sultan Experience</p>
-        </header>
-        
-        <section>
-            <h2>PRODUCT OFFERING</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="badge">HOT</div>
-                    <h3>P.0 (Pre-Order)</h3>
-                    <p>Reservasi produk sebelum rilis. Dapatkan harga spesial!</p>
-                    <div class="price">Rp 20.000</div>
-                    <button class="btn btn-block pulse" onclick="buyProduct('P.0 (Pre-Order)', 20000)">BELI SEKARANG</button>
-                    <p class="note">*Produk akan dikirim setelah rilis</p>
-                </div>
-                
-                <div class="product-card">
-                    <div class="badge">POPULAR</div>
-                    <h3>FREE UPDATE</h3>
-                    <p>Dapatkan akses update versi terbaru selamanya!</p>
-                    <div class="price">Rp 35.000</div>
-                    <button class="btn btn-block pulse" onclick="buyProduct('FREE UPDATE', 35000)">BELI SEKARANG</button>
-                </div>
-                
-                <div class="product-card">
-                    <h3>RESELLER SC</h3>
-                    <p>Lisensi untuk menjual kembali produk ini</p>
-                    <div class="price">Rp 50.000</div>
-                    <button class="btn btn-block" onclick="buyProduct('RESELLER SC', 50000)">BELI SEKARANG</button>
-                </div>
-                
-                <div class="product-card">
-                    <div class="badge">VIP</div>
-                    <h3>PT SC</h3>
-                    <p>Private Tutorial dan akses premium</p>
-                    <div class="price">Rp 75.000</div>
-                    <button class="btn btn-block" onclick="buyProduct('PT SC', 75000)">BELI SEKARANG</button>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin: 40px 0;">
-                <h3>P.O ITU PREE ORDER</h3>
-                <p>KAYAK BELUM RILIS TAPI KALO DAH RILIS BAKAL DAPAT PRODUK GITU</p>
-            </div>
-        </section>
-        
-        <section class="community">
-            <h2>JOIN OUR COMMUNITY</h2>
-            <p>Bergabunglah dengan komunitas kami untuk update terbaru dan diskusi seru!</p>
-            
-            <div class="community-links">
-                <div class="community-link">
-                    <h3>MARKET PLACE</h3>
-                    <p>Tempat jual beli dan diskusi produk</p>
-                    <a href="https://chat.whatsapp.com/CxsxA72RvlL5ePO5oix06y" class="btn" style="margin-top: 15px;">JOIN GRUP</a>
-                </div>
-                
-                <div class="community-link">
-                    <h3>CH UTAMA</h3>
-                    <p>Channel utama untuk update resmi</p>
-                    <a href="https://whatsapp.com/channel/0029Vb60Lq96LwHg2ricpU1K" class="btn" style="margin-top: 15px;">FOLLOW CHANNEL</a>
-                </div>
-            </div>
-        </section>
+
+  <canvas id="particles-js"></canvas>
+  <canvas id="leaves-js"></canvas>
+
+  <div class="container" id="main-content" style="pointer-events:auto;">
+    <header>MT CRASHER WHATSAP V1.0 FREE</header>
+    <header>WAJIB BACA INFORMASI & NEWS</header>
+    <nav>
+      <ul>
+    	<li onclick="location.href='info.html'">INFORMASI</li>
+    	<li onclick="location.href='news.html'">NEWS</li>
+        <li onclick="location.href='peninjauan.html'">PENINJAUAN</li>
+        <li onclick="location.href='setor.html'">WORK?? SETOR</li>
+        <li onclick="location.href='credit.html'">CREDIT</li>
+        <li onclick="location.href='saluran.html'">SALURAN DEV</li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="wave-container" aria-hidden="true">
+    <div class="wave"></div>
+    <div class="wave"></div>
     </div>
-    
-    <footer>
-        <p>© 2023 Angelic Evil | 𝕯𝖊𝖘𝖙𝖗𝖔𝖞𝖊𝖗 𝕸𝖆𝖘𝖙𝖊𝖗 V1.0.0 VIP</p>
-        <p>Contact Admin: <a href="https://wa.me/6289517546710" style="color: var(--accent);">089517546710</a></p>
-    </footer>
-    
-    <script>
-        function buyProduct(productName, price) {
-            const message = `Halo admin, saya ingin membeli ${productName} seharga ${formatPrice(price)}. Bagaimana cara pembayarannya?`;
-            const whatsappUrl = `https://wa.me/6289517546710?text=${encodeURIComponent(message)}`;
-            
-            // Open WhatsApp in a new tab
-            window.open(whatsappUrl, '_blank');
-            
-            // Track conversion (you can replace with your analytics)
-            console.log(`Conversion: ${productName} - ${price}`);
-        }
-        
-        function formatPrice(price) {
-            return new Intl.NumberFormat('id-ID', { 
-                style: 'currency', 
-                currency: 'IDR',
-                maximumFractionDigits: 0
-            }).format(price);
-        }
-        
-        // Simple animation on scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            document.querySelectorAll('.product-card, .community-link').forEach(card => {
-                observer.observe(card);
-            });
-        });
-    </script>
+
+  <!-- Info Popup Overlay -->
+  <div id="info-popup-overlay" aria-modal="true" role="dialog" aria-labelledby="info-popup-title" tabindex="-1">
+    <div id="info-popup">
+      <h2 id="info-popup-title">Informasi Penting</h2>
+      <div id="info-popup-content">
+        <p>1. FOLLOW SALURAN DEV KARNA WEB AKAN TERUS GANTI2 PW MENYULITKAN CH2 RECEH</p>
+        <p>2. TEKS BANDING DISINI HANYAK 50% WORK KARENA MASIH TAHAP PERKEMBANGAN</p>
+      </div>
+      <label>
+        <input type="checkbox" id="read-confirm" />
+        Iya, saya sudah membaca dan mengerti.
+      </label>
+      <button id="close-popup-btn" aria-label="Tutup Informasi">✖ Tutup</button>
+    </div>
+  </div>
+
+<script>
+  // Blue Flame Drift Particles
+  const canvas = document.getElementById('particles-js');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+    	this.x = Math.random() * w;
+      this.y = h + Math.random() * 100;
+      this.size = 1 + Math.random() * 2;
+      this.speed = 0.5 + Math.random() * 1.5;
+      this.angle = Math.random() * Math.PI * 2;
+      this.alpha = 0.05 + Math.random() * 0.15;
+    }
+    update() {
+      this.y -= this.speed;
+      this.x += Math.sin(this.angle) * 0.5;
+      this.alpha -= 0.002;
+      if (this.alpha <= 0 || this.y < -10) this.reset();
+    }
+    draw() {
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 8);
+      gradient.addColorStop(0, 'rgba(0,150,255,' + this.alpha + ')');
+      gradient.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = `rgba(0,190,255,${this.alpha * 0.5})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  let particlesArray = [];
+  for (let i = 0; i < 100; i++) {
+    particlesArray.push(new Particle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particlesArray.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Falling Leaves Effect
+  const leafCanvas = document.getElementById('leaves-js');
+  const leafCtx = leafCanvas.getContext('2d');
+  function leafResize() {
+    leafCanvas.width = window.innerWidth;
+    leafCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', leafResize);
+  leafResize();
+
+  class Leaf {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * leafCanvas.width;
+      this.y = Math.random() * -leafCanvas.height;
+      this.size = 10 + Math.random() * 15;
+      this.speed = 0.5 + Math.random() * 1.2;
+      this.angle = Math.random() * 2 * Math.PI;
+      this.spinSpeed = (Math.random() - 0.5) * 0.02;
+      this.opacity = 0.3 + Math.random() * 0.4;
+      this.color1 = 'rgba(0,191,255,' + this.opacity + ')';
+      this.color2 = 'rgba(135,206,250,' + this.opacity + ')';
+    }
+    update() {
+      this.y += this.speed;
+      this.x += Math.sin(this.angle) * 0.7;
+      this.angle += this.spinSpeed;
+      if (this.y > leafCanvas.height + this.size) this.reset();
+      if (this.x > leafCanvas.width + this.size) this.x = -this.size;
+      if (this.x < -this.size) this.x = leafCanvas.width + this.size;
+    }
+    draw() {
+      leafCtx.save();
+      leafCtx.translate(this.x, this.y);
+      leafCtx.rotate(this.angle);
+      let grad = leafCtx.createLinearGradient(-this.size/2, 0, this.size/2, 0);
+      grad.addColorStop(0, this.color1);
+      grad.addColorStop(1, this.color2);
+      leafCtx.fillStyle = grad;
+      leafCtx.beginPath();
+      leafCtx.ellipse(0, 0, this.size / 2, this.size / 3, 0, 0, 2 * Math.PI);
+      leafCtx.fill();
+      leafCtx.restore();
+    }
+  }
+
+  let leavesArray = [];
+  for (let i = 0; i < 30; i++) {
+    leavesArray.push(new Leaf());
+  }
+
+  function animateLeaves() {
+  	leafCtx.clearRect(0, 0, leafCanvas.width, leafCanvas.height);
+    leavesArray.forEach(leaf => {
+      leaf.update();
+      leaf.draw();
+    });
+    requestAnimationFrame(animateLeaves);
+  }
+  animateLeaves();
+
+  // POPUP LOGIC
+  const popupOverlay = document.getElementById('info-popup-overlay');
+  const checkbox = document.getElementById('read-confirm');
+  const closeBtn = document.getElementById('close-popup-btn');
+
+  // Show popup on page load (simulate after login)
+  window.addEventListener('load', () => {
+    popupOverlay.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Disable scroll on main page
+    checkbox.checked = false;
+    closeBtn.style.display = 'none';
+  });
+
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      closeBtn.style.display = 'block';
+    } else {
+      closeBtn.style.display = 'none';
+    }
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popupOverlay.style.display = 'none';
+    document.body.style.overflow = ''; // Re-enable scroll on main page
+  });
+</script>
 </body>
 </html>
