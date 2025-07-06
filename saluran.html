@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SALURAN - MT CRASHER WHATSAP</title>
+<style>
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    background: #0a123d;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #cce6ff;
+    overflow-x: hidden;
+  }
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 2rem;
+    text-align: center;
+  }
+  header {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #4fc3f7, 0 0 20px #0288d1;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  nav ul li {
+    background: linear-gradient(145deg, #0288d1, #01579b);
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #e0f7fa;
+    box-shadow: 0 4px 15px rgba(2, 136, 209, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  nav ul li:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px #81d4fa;
+  }
+  /* Blue Flame Drift Particles */
+  canvas#particles-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* Falling leaves canvas */
+  canvas#leaves-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  /* Wave background bottom */
+  .wave-container {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    overflow: hidden;
+    z-index: 5;
+  }
+  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, #0277bd 0%, #81d4fa 50%, #0277bd 100%);
+    opacity: 0.3;
+    border-radius: 35% 50% 0 0;
+    animation: waveMove 8s linear infinite;
+    transform-origin: center bottom;
+  }
+  .wave:nth-child(1) {
+    animation-delay: 0s;
+    bottom: 0;
+    opacity: 0.4;
+  }
+  .wave:nth-child(2) {
+  	animation-delay: -4s;
+    bottom: 10px;
+    opacity: 0.25;
+  }
+  @keyframes waveMove {
+    0% {
+      transform: translateX(0) rotate(0deg);
+    }
+    100% {
+      transform: translateX(-50%) rotate(5deg);
+    }
+  }
+  /* Content styling */
+  .content ul {
+    list-style: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+  }
+  .content ul li {
+    margin: 1rem 0;
+    padding: 0.7rem 1.5rem;
+    background: linear-gradient(145deg, #0288d1, #01579b);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(2,136,209,0.5);
+  }
+  button {
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #fff;
+    background: linear-gradient(145deg, #0288d1, #01579b);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(2,136,209,0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 35px #81d4fa;
+  }
+</style>
+</head>
+<body>
+  <canvas id="particles-js"></canvas>
+  <canvas id="leaves-js"></canvas>
+
+  <div class="container">
+    <header>WAJIB JOIN !!!</header>
+    <nav>
+      <ul>
+    </nav>
+    <div class="content">
+      <ul>
+    <button onclick="window.open('https://whatsapp.com/channel/0029VbAoUUXGehEUK3sXjq0J', '_blank')">
+      SALURAN DEV
+    </button>
+    <br><br>
+   <button onclick="location.href='index.html'">KEMBALI KE BERANDA</button>
+  </div>
+  <div class="wave-container" aria-hidden="true">
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+<script>
+  // Part 1: Blue Flame Drift Particles
+  const canvas = document.getElementById('particles-js');
+  const ctx = canvas.getContext('2d');
+  let w, h;
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = h + Math.random() * 100;
+      this.size = 1 + Math.random() * 2;
+      this.speed = 0.5 + Math.random() * 1.5;
+      this.angle = Math.random() * Math.PI * 2;
+      this.alpha = 0.05 + Math.random() * 0.15;
+    }
+    update() {
+      this.y -= this.speed;
+      this.x += Math.sin(this.angle) * 0.5;
+      this.alpha -= 0.002;
+      if (this.alpha <= 0 || this.y < -10) this.reset();
+    }
+    draw() {
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 8);
+      gradient.addColorStop(0, 'rgba(0,150,255,' + this.alpha + ')');
+      gradient.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 8, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = `rgba(0,190,255,${this.alpha * 0.5})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  let particlesArray = [];
+  for (let i = 0; i < 100; i++) {
+    particlesArray.push(new Particle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particlesArray.forEach(p => {
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Part 2: Falling Leaves Effect
+  const leafCanvas = document.getElementById('leaves-js');
+  const leafCtx = leafCanvas.getContext('2d');
+  function leafResize() {
+  	leafCanvas.width = window.innerWidth;
+    leafCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', leafResize);
+  leafResize();
+
+  class Leaf {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * leafCanvas.width;
+      this.y = Math.random() * -leafCanvas.height;
+      this.size = 10 + Math.random() * 15;
+      this.speed = 0.5 + Math.random() * 1.2;
+      this.angle = Math.random() * 2 * Math.PI;
+      this.spinSpeed = (Math.random() - 0.5) * 0.02;
+      this.opacity = 0.3 + Math.random() * 0.4;
+      this.color1 = 'rgba(0,191,255,' + this.opacity + ')';
+      this.color2 = 'rgba(135,206,250,' + this.opacity + ')';
+    }
+    update() {
+      this.y += this.speed;
+      this.x += Math.sin(this.angle) * 0.7;
+      this.angle += this.spinSpeed;
+      if (this.y > leafCanvas.height + this.size) this.reset();
+      if (this.x > leafCanvas.width + this.size) this.x = -this.size;
+      if (this.x < -this.size) this.x = leafCanvas.width + this.size;
+    }
+    draw() {
+      leafCtx.save();
+      leafCtx.translate(this.x, this.y);
+      leafCtx.rotate(this.angle);
+
+      let grad = leafCtx.createLinearGradient(-this.size/2, 0, this.size/2, 0);
+      grad.addColorStop(0, this.color1);
+      grad.addColorStop(1, this.color2);
+      leafCtx.fillStyle = grad;
+      leafCtx.beginPath();
+     leafCtx.ellipse(0, 0, this.size / 2,
+this.size / 3, 0, 0, 2 * Math.PI);
+      leafCtx.fill();
+      leafCtx.restore();
+    }
+  }
+
+  let leavesArray = [];
+  for (let i = 0; i < 30; i++) {
+    leavesArray.push(new Leaf());
+  }
+
+  function animateLeaves() {
+    leafCtx.clearRect(0, 0, leafCanvas.width, leafCanvas.height);
+    leavesArray.forEach(leaf => {
+      leaf.update();
+      leaf.draw();
+    });
+    requestAnimationFrame(animateLeaves);
+  }
+  animateLeaves();
+</script>
+</body>
+</html>
