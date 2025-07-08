@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Peninjauan Galactic</title>
+<style>
+  /* Reset & base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    background: #000428;
+    background: linear-gradient(to bottom, #000428 0%, #0a123d 50%, #1a237e 100%);
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+    touch-action: manipulation;
+  }
+
+  /* Container */
+  .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  header {
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #9c27b0, 0 0 20px #e91e63, 0 0 30px #3f51b5;
+    background: linear-gradient(90deg, #ff4081, #3f51b5, #00bcd4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px #9c27b0, 0 0 10px #e91e63, 0 0 15px #3f51b5;
+    }
+    to {
+      text-shadow: 0 0 10px #9c27b0, 0 0 20px #e91e63, 0 0 30px #3f51b5, 0 0 40px #3f51b5;
+    }
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+  nav ul li {
+    background: linear-gradient(145deg, rgba(63, 81, 181, 0.8), rgba(156, 39, 176, 0.8));
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    color: #e0f7fa;
+    box-shadow: 0 4px 20px rgba(156, 39, 176, 0.6);
+    transition: all 0.3s ease;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    min-width: 200px;
+  }
+  nav ul li:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      transparent 45%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 55%
+    );
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+  }
+  nav ul li:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.8);
+  }
+  nav ul li:hover:before {
+    left: 100%;
+  }
+  nav ul li:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Galaxy Particles Canvas */
+  canvas#galaxy-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Starfield Canvas */
+  canvas#stars-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Comet Trail Canvas */
+  canvas#comets-js {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  /* Nebula Background */
+  .nebula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
+    background: radial-gradient(circle at 20% 30%, rgba(156, 39, 176, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(63, 81, 181, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 40% 60%, rgba(233, 30, 99, 0.3) 0%, transparent 40%);
+    animation: nebulaPulse 20s infinite alternate;
+  }
+
+  @keyframes nebulaPulse {
+    0% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+  }
+
+  /* Floating Planets */
+  .planet {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(1px);
+    z-index: 1;
+    opacity: 0.8;
+    animation: float 30s infinite linear;
+  }
+  .planet-1 {
+    width: 150px;
+    height: 150px;
+    top: 15%;
+    left: 10%;
+    background: radial-gradient(circle at 30% 30%, #9c27b0, #3f51b5);
+    box-shadow: 0 0 50px #9c27b0;
+    animation-delay: 0s;
+  }
+  .planet-2 {
+    width: 100px;
+    height: 100px;
+    top: 65%;
+    left: 80%;
+    background: radial-gradient(circle at 30% 30%, #00bcd4, #3f51b5);
+    box-shadow: 0 0 40px #00bcd4;
+    animation-delay: -10s;
+  }
+  .planet-3 {
+    width: 80px;
+    height: 80px;
+    top: 80%;
+    left: 20%;
+    background: radial-gradient(circle at 30% 30%, #ff4081, #e91e63);
+    box-shadow: 0 0 30px #ff4081;
+    animation-delay: -20s;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(20px, 20px) rotate(90deg);
+    }
+    50% {
+      transform: translate(0, 40px) rotate(180deg);
+    }
+    75% {
+      transform: translate(-20px, 20px) rotate(270deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    header {
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.2rem;
+    }
+    nav ul {
+      gap: 1rem;
+    }
+    nav ul li {
+      padding: 0.8rem 1.2rem;
+      min-width: 160px;
+    }
+    .planet {
+      display: none; /* Hide planets on small screens */
+    }
+  }
+
+  /* Loading animation */
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000428;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s ease-out;
+  }
+  .loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: #9c27b0;
+    animation: spin 1s ease-in-out infinite;
+  }
+  .loader-text {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading Galaxy...</div>
+  </div>
+
+  <div class="nebula"></div>
+  <canvas id="stars-js"></canvas>
+  <canvas id="galaxy-js"></canvas>
+  <canvas id="comets-js"></canvas>
+  
+  <div class="planet planet-1"></div>
+  <div class="planet planet-2"></div>
+  <div class="planet planet-3"></div>
+
+  <div class="container">
+    <header>PENINJAUAN V2</header>
+    <nav>
+      <ul>
+        <li onclick="location.href='unbanned-spam-2.html'">UNBANNED SPAM</li>
+        <li onclick="location.href='unbanned-permanen-2.html'">UNBANNED PERMANEN</li>
+        <li onclick="location.href='reset-otp-2.html'">RESET OTP</li>
+        <li onclick="location.href='banned-2.html'">BANNED</li>
+        <li onclick="location.href='home.html'">KEMBALI KE BERANDA</li>
+      </ul>
+    </nav>
+  </div>
+
+<script>
+  // Wait for everything to load
+  window.addEventListener('load', function() {
+    // Hide loader
+    document.querySelector('.loader').style.opacity = '0';
+    setTimeout(function() {
+      document.querySelector('.loader').style.display = 'none';
+    }, 1000);
+    
+    // Initialize all effects
+    initStars();
+    initGalaxy();
+    initComets();
+  });
+
+  // Starfield Effect
+  function initStars() {
+    const canvas = document.getElementById('stars-js');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    const stars = [];
+    const starCount = Math.floor(window.innerWidth * window.innerHeight / 1000);
+    
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.5,
+        a: Math.random(),
+        speed: Math.random() * 0.05
+      });
+    }
+    
+    function animateStars() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = 'white';
+      
+      stars.forEach(star => {
+        star.y += star.speed;
+        if (star.y > h) {
+          star.y = 0;
+          star.x = Math.random() * w;
+        }
+        
+        ctx.globalAlpha = star.a;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      
+      requestAnimationFrame(animateStars);
+    }
+    
+    animateStars();
+  }
+
+  // Galaxy Particle Effect
+  function initGalaxy() {
+    const canvas = document.getElementById('galaxy-js');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.size = 1 + Math.random() * 3;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = `hsl(${Math.random() * 60 + 240}, 100%, ${Math.random() * 30 + 50}%)`;
+        this.alpha = Math.random() * 0.5 + 0.1;
+        this.angle = 0;
+        this.angleSpeed = (Math.random() - 0.5) * 0.01;
+        this.distance = Math.random() * 50 + 50;
+        this.center = {
+          x: w / 2 + (Math.random() - 0.5) * 200,
+          y: h / 2 + (Math.random() - 0.5) * 200
+        };
+      }
+      update() {
+        this.angle += this.angleSpeed;
+        this.x = this.center.x + Math.cos(this.angle) * this.distance;
+        this.y = this.center.y + Math.sin(this.angle) * this.distance;
+        this.alpha = 0.1 + Math.sin(this.angle) * 0.4;
+        
+        // Random drift
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        // Wrap around screen
+        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Glow effect
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size * 3
+        );
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    const particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle());
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  // Comet Trail Effect
+  function initComets() {
+    const canvas = document.getElementById('comets-js');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    class Comet {
+      constructor() {
+        this.reset();
+        this.history = [];
+        this.maxHistory = 20;
+      }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.speedX = (Math.random() - 0.8) * 5;
+        this.speedY = (Math.random() + 0.2) * 5;
+        this.size = 3 + Math.random() * 2;
+        this.color = `hsl(${Math.random() * 30 + 200}, 100%, ${Math.random() * 20 + 70}%)`;
+        this.history = [];
+      }
+      update() {
+        this.history.push({x: this.x, y: this.y});
+        if (this.history.length > this.maxHistory) {
+          this.history.shift();
+        }
+        
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) {
+          this.reset();
+        }
+      }
+      draw() {
+        // Draw tail
+        ctx.lineWidth = this.size / 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        
+        for (let i = 0; i < this.history.length - 1; i++) {
+          const alpha = i / this.history.length;
+          ctx.strokeStyle = `${this.color.replace(')', `, ${alpha})`)}`;
+          ctx.beginPath();
+          ctx.moveTo(this.history[i].x, this.history[i].y);
+          ctx.lineTo(this.history[i+1].x, this.history[i+1].y);
+          ctx.stroke();
+        }
+        
+        // Draw head
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Glow effect
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size * 5
+        );
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    const comets = [];
+    for (let i = 0; i < 3; i++) {
+      comets.push(new Comet());
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = 'rgba(0,0,0,0.1)';
+      ctx.fillRect(0, 0, w, h);
+      comets.forEach(c => {
+        c.update();
+        c.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+</script>
+</body>
+</html>

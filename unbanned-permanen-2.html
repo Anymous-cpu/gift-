@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>UNBANNED SPAM - GALACTIC APPEAL</title>
+<style>
+  * {margin: 0; padding: 0; box-sizing: border-box;}
+  body, html {
+    height: 100%;
+    background: #000428;
+    background: linear-gradient(to bottom, #000428 0%, #0a123d 50%, #1a237e 100%);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    color: #e0f7fa;
+    overflow-x: hidden;
+    touch-action: manipulation;
+  }
+
+  /* Loading animation */
+  .loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000428;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s ease-out;
+  }
+  .loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: #9c27b0;
+    animation: spin 1s ease-in-out infinite;
+  }
+  .loader-text {
+    margin-top: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Canvas layers */
+  canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  #stars-js { z-index: 1; }
+  #galaxy-js { z-index: 2; }
+  #comets-js { z-index: 3; }
+
+  /* Nebula Background */
+  .nebula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
+    background: radial-gradient(circle at 20% 30%, rgba(156, 39, 176, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(63, 81, 181, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 40% 60%, rgba(233, 30, 99, 0.3) 0%, transparent 40%);
+    animation: nebulaPulse 20s infinite alternate;
+  }
+
+  @keyframes nebulaPulse {
+    0% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+    100% { opacity: 0.3; transform: scale(1); }
+  }
+
+  /* Main content */
+  header {
+    z-index: 10;
+    position: relative;
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+    text-shadow: 0 0 10px #9c27b0, 0 0 20px #e91e63, 0 0 30px #3f51b5;
+    background: linear-gradient(90deg, #ff4081, #3f51b5, #00bcd4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 5px #9c27b0, 0 0 10px #e91e63, 0 0 15px #3f51b5; }
+    to { text-shadow: 0 0 10px #9c27b0, 0 0 20px #e91e63, 0 0 30px #3f51b5, 0 0 40px #3f51b5; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  label {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    color: #81d4fa;
+    align-self: flex-start;
+    margin-left: 10%;
+  }
+
+  input, select {
+    padding: 0.8rem 1.2rem;
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    border-radius: 12px;
+    border: none;
+    width: 80%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  input:focus, select:focus {
+    outline: none;
+    border-color: #4fc3f7;
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  button {
+    margin-top: 1rem;
+    background: linear-gradient(145deg, rgba(63, 81, 181, 0.8), rgba(156, 39, 176, 0.8));
+    border: none;
+    color: white;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    padding: 0.9rem 2.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(156, 39, 176, 0.6);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    font-weight: 600;
+    min-width: 200px;
+  }
+
+  button:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      transparent 45%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 55%
+    );
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+  }
+
+  button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 30px rgba(233, 30, 99, 0.8);
+  }
+
+  button:hover:before {
+    left: 100%;
+  }
+
+  button:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* Floating Planets */
+  .planet {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(1px);
+    z-index: 1;
+    opacity: 0.8;
+    animation: float 30s infinite linear;
+  }
+  .planet-1 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    left: 10%;
+    background: radial-gradient(circle at 30% 30%, #9c27b0, #3f51b5);
+    box-shadow: 0 0 40px #9c27b0;
+    animation-delay: 0s;
+  }
+  .planet-2 {
+    width: 80px;
+    height: 80px;
+    top: 65%;
+    left: 80%;
+    background: radial-gradient(circle at 30% 30%, #00bcd4, #3f51b5);
+    box-shadow: 0 0 30px #00bcd4;
+    animation-delay: -10s;
+  }
+
+  @keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, 20px) rotate(90deg); }
+    50% { transform: translate(0, 40px) rotate(180deg); }
+    75% { transform: translate(-20px, 20px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+      gap: 1rem;
+    }
+    label {
+      margin-left: 5%;
+    }
+    input, select {
+      width: 90%;
+      padding: 0.7rem 1rem;
+    }
+    button {
+      padding: 0.8rem 1.8rem;
+      min-width: 180px;
+    }
+    .planet {
+      display: none;
+    }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="loader">
+  <div class="loader-spinner"></div>
+  <div class="loader-text">Loading Galactic Appeal...</div>
+</div>
+
+<div class="nebula"></div>
+<canvas id="stars-js"></canvas>
+<canvas id="galaxy-js"></canvas>
+<canvas id="comets-js"></canvas>
+
+<div class="planet planet-1"></div>
+<div class="planet planet-2"></div>
+
+<header>UNBANNED PERMANEN V2</header>
+<div class="container">
+  <label for="numberInput">Masukkan Nomor Target:</label>
+  <input type="text" id="numberInput" placeholder="+62xxxxxxxxxxx">
+
+  <label for="templateSelect">Pilih Versi Banding:</label>
+  <select id="templateSelect"></select>
+
+  <button onclick="copyToClipboard()">Salin & Buka Email</button>
+  <button onclick="location.href='peninjauan-2.html'">KEMBALI</button>
+</div>
+
+<script>
+  // Wait for everything to load
+  window.addEventListener('load', function() {
+    // Hide loader
+    document.querySelector('.loader').style.opacity = '0';
+    setTimeout(function() {
+      document.querySelector('.loader').style.display = 'none';
+    }, 1000);
+    
+    // Initialize all effects
+    initStars();
+    initGalaxy();
+    initComets();
+  });
+
+  // Teks banding 20 versi
+  const templates = [
+"Hizmet şartlarınızı ihlal etmedim, hesabı açıklanamaz bir şekilde yasakladınız. Hesap etkinliklerimi inceledikten sonra, WhatsApp a erişebilmem için kısıtlamayı hızla kaldırırsınız. Çünkü hesabım yanlışlıkla yasaklandı Şartlarınızı veya politikanızı ihlal ettiğimi kabul ediyorum ve bunun için gerçekten üzgünüm lütfen bir şans verin ve yasağı hesabımdan kaldırın {number} isim Satya Budist gursarai Görüşleriniz için teşekkürler Hindistan lıyım, ülke kodum {number} Yasal adım Satya Budist gursarai Umarım bu SIM kartın yeni sahibi olduğum için WhatsApp hesap numaramdan kısıtlamalarınızı kaldırırsınız {number}",
+"मेरा व्हाट्सएप अकाउंट () नंबर ( ) को प्रसिद्ध व्हाट्सएप ऐप के कानूनों का उल्लंघन करने के लिए एक अनजान व्यक्ति को संदेश भेजने से प्रतिबंधित कर दिया गया है और में ये कानून नहीं जानता था इसलिए कृपया मेरे खाते को पुनर्प्राप्त करने और अनब्लॉक करने में मेरी मदद करें यह जितनी जल्दी हो सके क्योंकि मैं शर्तों के भीतर खाते पर काम करता हूं। मेरी कई नंबर के साथ इस अद्भुत व्हाट्सएप का उपयोग करने की महत्वाकांक्षा है। मैं आपसे अनुरोध करता हूं कि मेरे व्हाट्सएप को हटा दें और मुझे एक मौका दें {number}",
+"प्रिय व्हाट्सएप सपोर्ट टीम, मुझे आशा है कि यह संदेश आपको अच्छी तरह से मिल जाएगा ।  मैं अपने व्हाट्सएप अकाउंट पर प्रतिबंध की अपील करने के लिए लिख रहा हूं ।  मैं समझता हूं कि व्हाट्सएप की सेवा की शर्तों के उल्लंघन के कारण मेरे खाते पर प्रतिबंध लगा दिया गया था, और मैं किसी भी अनजाने कार्यों के लिए ईमानदारी से माफी मांगता हूं जिसके कारण यह हो सकता है ।  मैं व्हाट्सएप को एक आवश्यक संचार उपकरण और समुदाय के रूप में महत्व देता हूं, और मैं व्हाट्सएप की नीतियों और दिशानिर्देशों का पालन करने के लिए प्रतिबद्ध हूं ।  मैं कृपया अपने मामले की समीक्षा और अपने खाते पर प्रतिबंध हटाने का अनुरोध करता हूं ताकि मैं जिम्मेदारी से व्हाट्सएप का उपयोग करना जारी रख सकूं ।  कृपया नीचे कुछ जानकारी प्राप्त करें जो आपकी समीक्षा के लिए सहायक हो सकती हैं:{number} - मेरा पंजीकृत फोन नंबर: {number}",
+"مرحبًا فريق دعم وأعمال واتساب ماسنجر أرغب في التعامل معكم بخصوص أخطاء الدعم والعقوبات وهي أخطاء أعداد المستخدمين بدون سبب، والتي شهدتها شراسة كازو طنطا في الولايات المتحدة الأمريكية، عندما أكون مع أقارب العسل يقول واتس اب لحظر حسابي دون أي خطأ ولم أعرف لماذا ومتى أتواصل مع فريق دعم الواتس اب ولا أرد منذ فترة طويلة وأنا من مستخدمي الواتس اب منذ فترة طويلة أيضا وخدمة جيدة الشروط بتوجيه من الوالد ومن، وهو أن حسابي محظور دون أي خطأ يبحثون عن مشكلتي، كما يهمني استخدام الخلل لحل المشاكل في أسرع وقت ممكن، بسبب حظر حسابي لا يمكن التواصل مع عائلتي وهذا أمر مقلق لأنني أعمل، الخدمة بالنسبة لنا في الفترة الماضية غير قانونية، وهذا ظلم للمستخدمين وأنا أقدم مستخدم، لأنه العالم، شروطي وات اب تريد لإزالة العقوبات بوغيل حسابي وفحص هاتفي لتؤكد لي أنني لا أخالف أي شرط من شروط واتس اب، يرجى تشغيل حسابي واتساب مرة أخرى وتطلب مني توثيق حسابي معي باستخدام الواتس اب هذا شيء يسعدني توثيق الواتس اب الخاص بي مع العلم أن لدي أكبر عدد من الشركات الأمريكية هذا الرق للتواصل مع الشركات التي لدي وسبب الحظر هو أنه سبب لي مشاكل كبيرة يرجى إرسال رسالة إلى الرجل لدفع الموظف يستجيب في مزيد من الوقت واستعادة حسابي على الواتس اب. شكرًا لك WhatsApp Messenger وفريق دعم الأعمال {number}",
+"Mengapa, ketika saya menghubungi Anda melalui email, mereka merespons dan memberi tahu saya : Dapatkah Anda mengirimkan nomor telepon yang terkait dengan akun WhatsApp yang Anda ajak mengobrol dengan kami. Setelah mengirimi Anda nomor telepon yang terdaftar di WhatsApp tidak menanggapi pesan atau pertanyaan saya secara pasti, Anda harus meningkatkan transaksi Anda jika hal ini berlanjut, yaitu tidak menanggapi dan menyelesaikan masalah pengguna WhatsApp, saya akan menghapus WhatsApp secara permanen karena kami meminta bantuan dan Anda harus menyelesaikan masalah kami dan masalah pengguna dan saat berkomunikasi dengan Anda tentang akun yang dilarang menggunakan WhatsApp, kami tidak menerima tanggapan apa pun secara pasti setelah mengirimi Anda nomor telepon {number}",
+"cordiali saluti per il feedback di whatsapp Attualmente sto riscontrando un ostacolo nell'utilizzo di whatsapp, ovvero un ostacolo sul mio account whatsapp a cui non è possibile accedere a causa di un blocco accidentale del mio account. con questo messaggio vorrei richiedere supporto al sistema operativo whatsapp e al sistema di policy dei meta-servizi whatsapp per ripristinare il mio account whatsapp bloccato. Ho provato a esaminare attentamente ma la parte di supporto non ha risposto correttamente al mio messaggio! per favore supportami immediatamente e risolvi il problema di blocco al numero: {number}, per favore capisci gli utenti di whatsapp come me! ho bisogno di whatsapp per contattare il mio quartier generale e contattare anche l'FBI per aiutarmi in una questione seria!! Sostienici il prima possibile, grazie per il supporto e l'apprezzamento. [https://faq.whatsapp.com/]",
+"Hello, Greetings to the operational WhatsApp meta operating system support team, Warm greetings to Mark Zuckerberg and best wishes to Mark Zuckerberg as the manager of the WhatsApp application Let me introduce myself, I am an old user of the WhatsApp meta system application, I have been using WhatsApp for 5 years without any problems that I have experienced. I am permanently blocked. I'm confused because I've been using WhatsApp for almost 5 years and never had a serious problem like this arise. I think I have complied with all of WhatsApp's terms of service > [ https://www.whatsapp.com/legal/updates/terms-of-service ] , And I have never violated the terms of service that you have written on this website > [ https://www.whatsapp.com/legal ], but why can my WhatsApp account be permanently blocked? Since I used WhatsApp I never experiencing a problem like this, and this is the first time this problem has appeared on my WhatsApp account. This problem has really bothered me as a WhatsApp user for a long time!!, because I am very confused about this, I ask the WhatsApp operating system to help me to solve this problem and you can delete and lift the permanent block on my WhatsApp account. Thanks to you (Mark Zuckerberg) and the WhatsApp operational system {number}",
+"مرحبا واتساب، رجل ياباني مجهول استولى على الواتس اب الخاص بي، استخدم الواتس اب الخاص بي لبيع 172 فيديو إباحي و13 طفل صغير للبيع وقام المشتري باغتصابهم، كما هددني إذا لم أعطيه الواتس اب الخاص بي، لقد قُتلت وأخي - رجلي اغتصب امرأتي، في البداية لم أصدق ذلك لكنه كان يعرف منزل عائلتي وبعد أن استخدم اليابانيون الواتس اب الخاص بي واستخدمت الواتساب، تم حظر رقم الواتس اب الخاص بي ثم قرأت مقالات الواتس اب عن استمالة الرجال اليابانيين انتهكت شروط الخدمة على WhatsApp بعد أن استخدمت WhatsApp الخاص بي، أطلب WhatsApp حقًا، قم بإلغاء حظر WhatsApp الخاص بي واستعادة حساب WhatsApp الخاص بي، شكرًا لك، رقم WhatsApp الخاص بي هو {number}",
+"(Привет, наша официальная служба поддержки) [https://faq.whatsapp.com/business] Моя учетная запись WhatsApp была заблокирована на 1 год. немедленный доступ и свобода доступа к моей учетной записи WhatsApp, которая была деактивирована WhatsApp, поскольку я никогда не нарушал политику конфиденциальности WhatsApp и может быть решен как можно скорее в рамках полного одностороннего процесса выпуска. Надеюсь, вы сможете мне помочь. Это номер WhatsApp, который я не могу использовать для действий в WhatsApp > {number}. пожалуйста, поддержите меня по этому вопросу и номеру в течение двадцати четырех часов [24 часа].",
+"Hello good evening WhatsApp, I am a WhatsApp user with the following number {number}, when I opened the WhatsApp application I got a notification saying that my WhatsApp number had been blocked and I couldn't use WhatsApp. Beforehand I just sent chat messages as usual to my friends. , I also don't know what violation I committed. With my apologies, this is one of the considerations for activating a blocked WhatsApp account. Thank you in advance.",
+"Hello WhatsApp admin, I'm ZynnZyaa, I'm very disappointed with my number being blocked, even though I didn't do anything wrong and I only sent documents to my boss in Japan, suddenly my number was permanently blocked so I ask you to reopen my WhatsApp account, if I don't There is news that I will be fired from work, I am on holiday in Korea, I only have one number, I Nizam really ask WhatsApp to re-unblock my account, {number}, Thank you."
+];
+  const select = document.getElementById("templateSelect");
+  templates.forEach((template, index) => {
+    const option = document.createElement("option");
+    option.value = template;
+    option.text = `Versi ${index + 1}`;
+    select.appendChild(option);
+  });
+
+  function copyToClipboard() {
+    const number = document.getElementById("numberInput").value.trim();
+    if (!number) {
+      alert("Masukkan nomor target terlebih dahulu!");
+      return;
+    }
+    const selectedTemplate = select.value.replace(/{number}/g, number);
+    navigator.clipboard.writeText(selectedTemplate).then(() => {
+      window.location.href = `mailto:support@support.whatsapp.com,smb_web@support.whatsapp.com,android@support.whatsapp.com?subject=Permohonan Unban&body=${encodeURIComponent(selectedTemplate)}`;
+    });
+  }
+
+  // Starfield Effect
+  function initStars() {
+    const canvas = document.getElementById('stars-js');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    const stars = [];
+    const starCount = Math.floor(window.innerWidth * window.innerHeight / 1000);
+    
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.5,
+        a: Math.random(),
+        speed: Math.random() * 0.05
+      });
+    }
+    
+    function animateStars() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = 'white';
+      
+      stars.forEach(star => {
+        star.y += star.speed;
+        if (star.y > h) {
+          star.y = 0;
+          star.x = Math.random() * w;
+        }
+        
+        ctx.globalAlpha = star.a;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      
+      requestAnimationFrame(animateStars);
+    }
+    
+    animateStars();
+  }
+
+  // Galaxy Particle Effect
+  function initGalaxy() {
+    const canvas = document.getElementById('galaxy-js');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.size = 1 + Math.random() * 3;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = `hsl(${Math.random() * 60 + 240}, 100%, ${Math.random() * 30 + 50}%)`;
+        this.alpha = Math.random() * 0.5 + 0.1;
+        this.angle = 0;
+        this.angleSpeed = (Math.random() - 0.5) * 0.01;
+        this.distance = Math.random() * 50 + 50;
+        this.center = {
+          x: w / 2 + (Math.random() - 0.5) * 200,
+          y: h / 2 + (Math.random() - 0.5) * 200
+        };
+      }
+      update() {
+        this.angle += this.angleSpeed;
+        this.x = this.center.x + Math.cos(this.angle) * this.distance;
+        this.y = this.center.y + Math.sin(this.angle) * this.distance;
+        this.alpha = 0.1 + Math.sin(this.angle) * 0.4;
+        
+        // Random drift
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        // Wrap around screen
+        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Glow effect
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size * 3
+        );
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    const particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push(new Particle());
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  // Comet Trail Effect
+  function initComets() {
+    const canvas = document.getElementById('comets-js');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+    
+    class Comet {
+      constructor() {
+        this.reset();
+        this.history = [];
+        this.maxHistory = 20;
+      }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.speedX = (Math.random() - 0.8) * 5;
+        this.speedY = (Math.random() + 0.2) * 5;
+        this.size = 3 + Math.random() * 2;
+        this.color = `hsl(${Math.random() * 30 + 200}, 100%, ${Math.random() * 20 + 70}%)`;
+        this.history = [];
+      }
+      update() {
+        this.history.push({x: this.x, y: this.y});
+        if (this.history.length > this.maxHistory) {
+          this.history.shift();
+        }
+        
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) {
+          this.reset();
+        }
+      }
+      draw() {
+        // Draw tail
+        ctx.lineWidth = this.size / 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        
+        for (let i = 0; i < this.history.length - 1; i++) {
+          const alpha = i / this.history.length;
+          ctx.strokeStyle = `${this.color.replace(')', `, ${alpha})`)}`;
+          ctx.beginPath();
+          ctx.moveTo(this.history[i].x, this.history[i].y);
+          ctx.lineTo(this.history[i+1].x, this.history[i+1].y);
+          ctx.stroke();
+        }
+        
+        // Draw head
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Glow effect
+        const gradient = ctx.createRadialGradient(
+          this.x, this.y, 0,
+          this.x, this.y, this.size * 5
+        );
+        gradient.addColorStop(0, this.color);
+        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    const comets = [];
+    for (let i = 0; i < 3; i++) {
+      comets.push(new Comet());
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = 'rgba(0,0,0,0.1)';
+      ctx.fillRect(0, 0, w, h);
+      comets.forEach(c => {
+        c.update();
+        c.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+</script>
+</body>
+</html>
