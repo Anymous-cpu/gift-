@@ -1,295 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SALURAN - MT CRASHER WHATSAP</title>
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body, html {
-    height: 100%;
-    background: #0a123d;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #cce6ff;
-    overflow-x: hidden;
-  }
-  .container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 10;
-    padding: 2rem;
-    text-align: center;
-  }
-  header {
-    font-size: 3rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 0.3rem;
-    margin-bottom: 2rem;
-    text-shadow: 0 0 10px #4fc3f7, 0 0 20px #0288d1;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 3rem;
-  }
-  nav ul li {
-    background: linear-gradient(145deg, #0288d1, #01579b);
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: #e0f7fa;
-    box-shadow: 0 4px 15px rgba(2, 136, 209, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    user-select: none;
-  }
-  nav ul li:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px #81d4fa;
-  }
-  /* Blue Flame Drift Particles */
-  canvas#particles-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 1;
-    pointer-events: none;
-  }
-  /* Falling leaves canvas */
-  canvas#leaves-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 2;
-    pointer-events: none;
-  }
-  /* Wave background bottom */
-  .wave-container {
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    height: 200px;
-    overflow: hidden;
-    z-index: 5;
-  }
-  .wave {
-    position: absolute;
-    bottom: 0;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, #0277bd 0%, #81d4fa 50%, #0277bd 100%);
-    opacity: 0.3;
-    border-radius: 35% 50% 0 0;
-    animation: waveMove 8s linear infinite;
-    transform-origin: center bottom;
-  }
-  .wave:nth-child(1) {
-    animation-delay: 0s;
-    bottom: 0;
-    opacity: 0.4;
-  }
-  .wave:nth-child(2) {
-  	animation-delay: -4s;
-    bottom: 10px;
-    opacity: 0.25;
-  }
-  @keyframes waveMove {
-    0% {
-      transform: translateX(0) rotate(0deg);
-    }
-    100% {
-      transform: translateX(-50%) rotate(5deg);
-    }
-  }
-  /* Content styling */
-  .content ul {
-    list-style: none;
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 3rem;
-  }
-  .content ul li {
-    margin: 1rem 0;
-    padding: 0.7rem 1.5rem;
-    background: linear-gradient(145deg, #0288d1, #01579b);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(2,136,209,0.5);
-  }
-  button {
-    padding: 1rem 2rem;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #fff;
-    background: linear-gradient(145deg, #0288d1, #01579b);
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(2,136,209,0.7);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 10px 35px #81d4fa;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Galaxy Channels - MT CRASHER WHATSAPP</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            background: #000;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            touch-action: manipulation;
+        }
+        
+        /* Container */
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header {
+            font-size: clamp(1.8rem, 6vw, 3.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #8e2de2, #4a00e0, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(142, 45, 226, 0.4);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            padding: 0 15px;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px rgba(142, 45, 226, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(74, 0, 224, 0.6), 0 0 30px rgba(0, 212, 255, 0.4); }
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+        
+        nav ul li {
+            background: linear-gradient(145deg, #8e2de2, #4a00e0);
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #fff;
+            box-shadow: 0 5px 25px rgba(142, 45, 226, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        nav ul li:nth-child(2n) {
+            animation-delay: 1s;
+        }
+        
+        nav ul li:nth-child(3n) {
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.03); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        
+        nav ul li:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 8px 35px rgba(142, 45, 226, 0.8);
+        }
+        
+        nav ul li::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent,
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+        
+        .content {
+            margin: 2rem 0;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .content ul {
+            list-style: none;
+            width: 100%;
+        }
+        
+        .content ul li {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .content ul li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
+        
+        button {
+            background: linear-gradient(145deg, #8e2de2, #4a00e0);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 700;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            cursor: pointer;
+            box-shadow: 0 5px 25px rgba(142, 45, 226, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 0.5rem;
+            min-width: 250px;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 35px rgba(142, 45, 226, 0.8);
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent,
+                transparent,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent,
+                transparent
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        /* Canvas for galaxy particles */
+        #galaxy-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        /* Canvas for shooting stars */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        /* Floating planets */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.8;
+            z-index: 3;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .planet-1 {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #4a00e0, #8e2de2, #000);
+            top: 10%;
+            left: 5%;
+            box-shadow: 0 0 50px #4a00e0;
+            animation-delay: 0s;
+        }
+        
+        .planet-2 {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #00d4ff, #8e2de2, #000);
+            bottom: 15%;
+            right: 10%;
+            box-shadow: 0 0 40px #00d4ff;
+            animation-delay: 3s;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            header {
+                letter-spacing: 0.1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            nav ul li {
+                padding: 0.8rem 1.5rem;
+            }
+            
+            .planet-1 {
+                width: 80px;
+                height: 80px;
+                top: 5%;
+                left: 5%;
+            }
+            
+            .planet-2 {
+                width: 60px;
+                height: 60px;
+                bottom: 10%;
+                right: 5%;
+            }
+            
+            button {
+                min-width: 200px;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <canvas id="particles-js"></canvas>
-  <canvas id="leaves-js"></canvas>
+    <!-- Main galaxy particles canvas -->
+    <canvas id="galaxy-canvas"></canvas>
+    
+    <!-- Shooting stars canvas -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Floating planets -->
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    
+    <!-- Content container -->
+    <div class="container">
+        <header>WAJIB JOIN !!!</header>
+        <div class="content">
+            <ul>
+                <li>Channel Resmi MT Crasher</li>
+                <li>Update Fitur Terbaru</li>
+                <li>Informasi</li>
+            </ul>
+        </div>
+        
+        <button onclick="window.open('https://whatsapp.com/channel/0029VbAoUUXGehEUK3sXjq0J', '_blank')">
+            SALURAN DEV
+        </button>
+        
+        <button onclick="location.href='home.html'">KEMBALI KE BERANDA</button>
+    </div>
 
-  <div class="container">
-    <header>WAJIB JOIN !!!</header>
-    <nav>
-      <ul>
-    </nav>
-    <div class="content">
-      <ul>
-    <button onclick="window.open('https://whatsapp.com/channel/0029VbAoUUXGehEUK3sXjq0J', '_blank')">
-      SALURAN DEV
-    </button>
-    <br><br>
-   <button onclick="location.href='home.html'">KEMBALI KE BERANDA</button>
-  </div>
-  <div class="wave-container" aria-hidden="true">
-    <div class="wave"></div>
-    <div class="wave"></div>
-  </div>
-
-<script>
-  // Part 1: Blue Flame Drift Particles
-  const canvas = document.getElementById('particles-js');
-  const ctx = canvas.getContext('2d');
-  let w, h;
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  class Particle {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * w;
-      this.y = h + Math.random() * 100;
-      this.size = 1 + Math.random() * 2;
-      this.speed = 0.5 + Math.random() * 1.5;
-      this.angle = Math.random() * Math.PI * 2;
-      this.alpha = 0.05 + Math.random() * 0.15;
-    }
-    update() {
-      this.y -= this.speed;
-      this.x += Math.sin(this.angle) * 0.5;
-      this.alpha -= 0.002;
-      if (this.alpha <= 0 || this.y < -10) this.reset();
-    }
-    draw() {
-      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 8);
-      gradient.addColorStop(0, 'rgba(0,150,255,' + this.alpha + ')');
-      gradient.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * 8, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = `rgba(0,190,255,${this.alpha * 0.5})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-
-  let particlesArray = [];
-  for (let i = 0; i < 100; i++) {
-    particlesArray.push(new Particle());
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, w, h);
-    particlesArray.forEach(p => {
-      p.update();
-      p.draw();
-    });
-    requestAnimationFrame(animate);
-  }
-  animate();
-
-  // Part 2: Falling Leaves Effect
-  const leafCanvas = document.getElementById('leaves-js');
-  const leafCtx = leafCanvas.getContext('2d');
-  function leafResize() {
-  	leafCanvas.width = window.innerWidth;
-    leafCanvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', leafResize);
-  leafResize();
-
-  class Leaf {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * leafCanvas.width;
-      this.y = Math.random() * -leafCanvas.height;
-      this.size = 10 + Math.random() * 15;
-      this.speed = 0.5 + Math.random() * 1.2;
-      this.angle = Math.random() * 2 * Math.PI;
-      this.spinSpeed = (Math.random() - 0.5) * 0.02;
-      this.opacity = 0.3 + Math.random() * 0.4;
-      this.color1 = 'rgba(0,191,255,' + this.opacity + ')';
-      this.color2 = 'rgba(135,206,250,' + this.opacity + ')';
-    }
-    update() {
-      this.y += this.speed;
-      this.x += Math.sin(this.angle) * 0.7;
-      this.angle += this.spinSpeed;
-      if (this.y > leafCanvas.height + this.size) this.reset();
-      if (this.x > leafCanvas.width + this.size) this.x = -this.size;
-      if (this.x < -this.size) this.x = leafCanvas.width + this.size;
-    }
-    draw() {
-      leafCtx.save();
-      leafCtx.translate(this.x, this.y);
-      leafCtx.rotate(this.angle);
-
-      let grad = leafCtx.createLinearGradient(-this.size/2, 0, this.size/2, 0);
-      grad.addColorStop(0, this.color1);
-      grad.addColorStop(1, this.color2);
-      leafCtx.fillStyle = grad;
-      leafCtx.beginPath();
-     leafCtx.ellipse(0, 0, this.size / 2,
-this.size / 3, 0, 0, 2 * Math.PI);
-      leafCtx.fill();
-      leafCtx.restore();
-    }
-  }
-
-  let leavesArray = [];
-  for (let i = 0; i < 30; i++) {
-    leavesArray.push(new Leaf());
-  }
-
-  function animateLeaves() {
-    leafCtx.clearRect(0, 0, leafCanvas.width, leafCanvas.height);
-    leavesArray.forEach(leaf => {
-      leaf.update();
-      leaf.draw();
-    });
-    requestAnimationFrame(animateLeaves);
-  }
-  animateLeaves();
-</script>
+    <script>
+        // Galaxy Particles System
+        const galaxyCanvas = document.getElementById('galaxy-canvas');
+        const galaxyCtx = galaxyCanvas.getContext('2d');
+        
+        // Stars System
+        const starsCanvas = document.getElementById('stars-canvas');
+        const starsCtx = starsCanvas.getContext('2d');
+        
+        // Set canvas sizes
+        function resizeCanvases() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            galaxyCanvas.width = starsCanvas.width = width;
+            galaxyCanvas.height = starsCanvas.height = height;
+        }
+        
+        window.addEventListener('resize', resizeCanvases);
+        resizeCanvases();
+        
+        // Galaxy Particles
+        class GalaxyParticle {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * galaxyCanvas.width;
+                this.y = Math.random() * galaxyCanvas.height;
+                this.size = Math.random() * 3;
+                this.baseSize = this.size;
+                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.speedY = (Math.random() - 0.5) * 0.2;
+                this.color = `hsl(${Math.random() * 60 + 240}, 100%, ${Math.random() * 30 + 50}%)`;
+                this.angle = 0;
+                this.angleSpeed = (Math.random() - 0.5) * 0.01;
+                this.distance = Math.random() * 100 + 50;
+                this.centerX = galaxyCanvas.width / 2 + (Math.random() - 0.5) * 200;
+                this.centerY = galaxyCanvas.height / 2 + (Math.random() - 0.5) * 200;
+                this.pulseSpeed = Math.random() * 0.02 + 0.01;
+            }
+            
+            update() {
+                // Orbital movement
+                this.angle += this.angleSpeed;
+                const targetX = this.centerX + Math.cos(this.angle) * this.distance;
+                const targetY = this.centerY + Math.sin(this.angle) * this.distance;
+                
+                this.x += (targetX - this.x) * 0.05;
+                this.y += (targetY - this.y) * 0.05;
+                
+                // Pulsing effect
+                this.size = this.baseSize + Math.sin(Date.now() * this.pulseSpeed) * 1;
+                
+                // Wrap around edges
+                if (this.x < 0) this.x = galaxyCanvas.width;
+                if (this.x > galaxyCanvas.width) this.x = 0;
+                if (this.y < 0) this.y = galaxyCanvas.height;
+                if (this.y > galaxyCanvas.height) this.y = 0;
+            }
+            
+            draw() {
+                galaxyCtx.beginPath();
+                galaxyCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                
+                const gradient = galaxyCtx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.size
+                );
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                
+                galaxyCtx.fillStyle = gradient;
+                galaxyCtx.fill();
+            }
+        }
+        
+        // Shooting Stars
+        class ShootingStar {
+            constructor() {
+                this.reset();
+            }
+            
+            reset() {
+                this.x = Math.random() * starsCanvas.width;
+                this.y = -10;
+                this.speedX = (Math.random() - 0.3) * 10;
+                this.speedY = Math.random() * 5 + 5;
+                this.size = Math.random() * 2 + 1;
+                this.alpha = 0;
+                this.maxAlpha = Math.random() * 0.8 + 0.2;
+                this.fadeIn = true;
+                this.tailLength = Math.random() * 50 + 30;
+                this.color = `hsl(${Math.random() * 30 + 210}, 100%, ${Math.random() * 30 + 70}%)`;
+            }
+            
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                if (this.fadeIn) {
+                    this.alpha += 0.02;
+                    if (this.alpha >= this.maxAlpha) this.fadeIn = false;
+                } else {
+                    this.alpha -= 0.01;
+                }
+                
+                if (this.alpha <= 0 || this.y > starsCanvas.height + 20) {
+                    this.reset();
+                }
+            }
+            
+            draw() {
+                starsCtx.beginPath();
+                starsCtx.moveTo(this.x, this.y);
+                starsCtx.lineTo(
+                    this.x - this.speedX * this.tailLength / 10,
+                    this.y - this.speedY * this.tailLength / 10
+                );
+                
+                const gradient = starsCtx.createLinearGradient(
+                    this.x, this.y,
+                    this.x - this.speedX * this.tailLength / 10,
+                    this.y - this.speedY * this.tailLength / 10
+                );
+                
+                gradient.addColorStop(0, this.color);
+                gradient.addColorStop(1, 'rgba(255,255,255,0)');
+                
+                starsCtx.strokeStyle = gradient;
+                starsCtx.lineWidth = this.size;
+                starsCtx.globalAlpha = this.alpha;
+                starsCtx.stroke();
+                starsCtx.globalAlpha = 1;
+                
+                // Star head
+                starsCtx.beginPath();
+                starsCtx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+                starsCtx.fillStyle = this.color;
+                starsCtx.globalAlpha = this.alpha;
+                starsCtx.fill();
+                starsCtx.globalAlpha = 1;
+            }
+        }
+        
+        // Create particles
+        const galaxyParticles = [];
+        for (let i = 0; i < 150; i++) {
+            galaxyParticles.push(new GalaxyParticle());
+        }
+        
+        const shootingStars = [];
+        for (let i = 0; i < 5; i++) {
+            shootingStars.push(new ShootingStar());
+        }
+        
+        // Animation loop
+        function animate() {
+            // Clear canvases with semi-transparent black for trail effects
+            galaxyCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            galaxyCtx.fillRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
+            
+            starsCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            starsCtx.fillRect(0, 0, starsCanvas.width, starsCanvas.height);
+            
+            // Update and draw particles
+            galaxyParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            shootingStars.forEach(s => {
+                s.update();
+                s.draw();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Touch and mouse interaction effects
+        const interactiveCanvas = document.createElement('canvas');
+        interactiveCanvas.style.position = 'fixed';
+        interactiveCanvas.style.top = '0';
+        interactiveCanvas.style.left = '0';
+        interactiveCanvas.style.width = '100%';
+        interactiveCanvas.style.height = '100%';
+        interactiveCanvas.style.zIndex = '10';
+        interactiveCanvas.style.pointerEvents = 'none';
+        document.body.appendChild(interactiveCanvas);
+        
+        const interactiveCtx = interactiveCanvas.getContext('2d');
+        interactiveCanvas.width = window.innerWidth;
+        interactiveCanvas.height = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            interactiveCanvas.width = window.innerWidth;
+            interactiveCanvas.height = window.innerHeight;
+        });
+        
+        const ripples = [];
+        
+        class Ripple {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 5;
+                this.maxRadius = Math.random() * 100 + 50;
+                this.color = `hsla(${Math.random() * 60 + 240}, 100%, 70%, 0.5)`;
+                this.speed = Math.random() * 2 + 1;
+                this.alpha = 1;
+            }
+            
+            update() {
+                this.radius += this.speed;
+                this.alpha -= 0.01;
+                return this.alpha > 0 && this.radius < this.maxRadius;
+            }
+            
+            draw() {
+                interactiveCtx.beginPath();
+                interactiveCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                interactiveCtx.strokeStyle = this.color;
+                interactiveCtx.lineWidth = 2;
+                interactiveCtx.globalAlpha = this.alpha;
+                interactiveCtx.stroke();
+                interactiveCtx.globalAlpha = 1;
+            }
+        }
+        
+        function handleInteraction(x, y) {
+            ripples.push(new Ripple(x, y));
+            
+            // Create particles at interaction point
+            for (let i = 0; i < 10; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 3 + 1;
+                const particle = {
+                    x: x,
+                    y: y,
+                    speedX: Math.cos(angle) * speed,
+                    speedY: Math.sin(angle) * speed,
+                    size: Math.random() * 3 + 1,
+                    alpha: 1,
+                    color: `hsla(${Math.random() * 60 + 240}, 100%, 70%, 0.8)`
+                };
+                
+                (function(p) {
+                    const interval = setInterval(() => {
+                        p.x += p.speedX;
+                        p.y += p.speedY;
+                        p.alpha -= 0.05;
+                        p.speedX *= 0.95;
+                        p.speedY *= 0.95;
+                        
+                        if (p.alpha <= 0) {
+                            clearInterval(interval);
+                        }
+                    }, 16);
+                })(particle);
+                
+                ripples.push({
+                    update: function() { return particle.alpha > 0; },
+                    draw: function() {
+                        interactiveCtx.beginPath();
+                        interactiveCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        interactiveCtx.fillStyle = p.color;
+                        interactiveCtx.globalAlpha = p.alpha;
+                        interactiveCtx.fill();
+                        interactiveCtx.globalAlpha = 1;
+                    }
+                });
+            }
+        }
+        
+        // Mouse/touch event listeners
+        document.querySelectorAll('nav ul li, button').forEach(element => {
+            element.addEventListener('mousemove', (e) => {
+                const rect = element.getBoundingClientRect();
+                handleInteraction(e.clientX - rect.left + rect.x, e.clientY - rect.top + rect.y);
+            });
+            
+            element.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const rect = element.getBoundingClientRect();
+                const touch = e.touches[0];
+                handleInteraction(touch.clientX - rect.left + rect.x, touch.clientY - rect.top + rect.y);
+            }, { passive: false });
+        });
+        
+        // Ripple animation
+        function animateRipples() {
+            interactiveCtx.clearRect(0, 0, interactiveCanvas.width, interactiveCanvas.height);
+            
+            for (let i = ripples.length - 1; i >= 0; i--) {
+                const ripple = ripples[i];
+                if (ripple.update()) {
+                    ripple.draw();
+                } else {
+                    ripples.splice(i, 1);
+                }
+            }
+            
+            requestAnimationFrame(animateRipples);
+        }
+        
+        animateRipples();
+    </script>
 </body>
 </html>
