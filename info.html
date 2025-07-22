@@ -1,459 +1,517 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Info - MT CRASHER GALAXY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>MAU DERES BUYYER?? JOIN JASHER INI AJA !!!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset & base */
         * {
-            margin: 0;
-            padding: 0;
+            margin: 0; 
+            padding: 0; 
             box-sizing: border-box;
         }
-
+        
         body, html {
             height: 100%;
-            font-family: 'Space Mono', monospace;
-            background: #000000;
-            color: #ffffff;
+            background-color: #0a0a1a;
+            font-family: 'Rajdhani', sans-serif;
+            color: #00f0ff;
             overflow-x: hidden;
-            overflow-y: auto;
-            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
 
-        #galaxy-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* Container */
+        .main-container {
+            position: relative;
             width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 2rem auto 4rem auto;
-            padding: 0 1.5rem;
-            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             z-index: 10;
-        }
-
-        h1 {
+            padding: 1rem;
             text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            margin: 1.5rem 0;
-            letter-spacing: 3px;
-            color: #6ae2ff;
-            text-shadow: 0 0 10px #00a8ff, 0 0 20px #0088cc;
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            padding: 0.5rem;
-            position: relative;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 25%;
-            width: 50%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #6ae2ff, transparent);
-            box-shadow: 0 0 10px #6ae2ff;
-        }
-
-        .info-box {
-            background: rgba(5, 10, 30, 0.7);
-            border-radius: 15px;
-            border: 1px solid #6ae2ff55;
-            box-shadow: 0 0 25px #00a8ff33, inset 0 0 15px #00a8ff22;
-            padding: 1.8rem;
-            margin-bottom: 2rem;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .info-box:hover {
-            box-shadow: 0 0 40px #6ae2ff55, inset 0 0 20px #00a8ff33;
-            transform: translateY(-3px);
-        }
-
-        .info-box h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            color: #6ae2ff;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .info-box h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, #6ae2ff, transparent);
-        }
-
-        .info-box p {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 0.8rem;
-            color: #d1f5ff;
-        }
-
-        .btn-container {
-            text-align: center;
-            margin-top: 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        a.btn-back {
-            display: inline-block;
-            padding: 0.9rem 2.5rem;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #6ae2ff;
-            border: 2px solid #6ae2ff;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.4s ease;
-            text-align: center;
-            letter-spacing: 1px;
-            background: rgba(10, 25, 50, 0.3);
-            text-shadow: 0 0 5px #6ae2ff;
-            box-shadow: 0 0 15px #00a8ff33;
-            position: relative;
             overflow: hidden;
         }
 
-        a.btn-back:hover {
-            background: rgba(106, 226, 255, 0.2);
-            color: #ffffff;
-            box-shadow: 0 0 25px #6ae2ff;
-            transform: translateY(-2px);
+        header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            background: linear-gradient(to right, #00f0ff, #0080ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
         }
 
-        a.btn-back::before {
+        header::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(106, 226, 255, 0) 0%,
-                rgba(106, 226, 255, 0.1) 50%,
-                rgba(106, 226, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            transition: all 0.6s ease;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #00f0ff, transparent);
+            box-shadow: 0 0 10px #00f0ff;
         }
 
-        a.btn-back:hover::before {
+        .content-box {
+            background: rgba(20, 25, 45, 0.8);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem;
+            max-width: 800px;
+            width: 90%;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+            text-align: left;
+            overflow-y: auto;
+            max-height: 60vh;
+        }
+
+        .content-box p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .content-box strong {
+            color: #00f0ff;
+            font-weight: 700;
+        }
+
+        .content-box a {
+            color: #00f0ff;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(0, 240, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .content-box a:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 0 1rem;
+        }
+        
+        nav ul li {
+            background: rgba(20, 25, 45, 0.8);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 150px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        nav ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+            background: rgba(30, 35, 60, 0.8);
+        }
+        
+        nav ul li:active {
+            transform: translateY(0);
+        }
+        
+        nav ul li::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(0, 240, 255, 0.2), 
+                transparent
+            );
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        nav ul li:hover::before {
             left: 100%;
         }
 
-        /* Stars */
-        .stars {
+        /* Cyber Background Elements */
+        .cyber-grid {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2;
-            pointer-events: none;
+            background: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
         }
 
-        /* Responsive adjustments */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(0, 240, 255, 0.1),
+                transparent
+            );
+            animation: scan 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes scan {
+            0% { top: -10px; }
+            100% { top: 100%; }
+        }
+
+        .cyber-city {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(transparent, rgba(0, 240, 255, 0.1));
+            z-index: 0;
+        }
+
+        .cyber-building {
+            position: absolute;
+            bottom: 0;
+            height: 0;
+            background: rgba(0, 240, 255, 0.1);
+            border-left: 1px solid rgba(0, 240, 255, 0.3);
+            border-right: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        /* Data Particles */
+        #cyber-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Cyber Nodes */
+        .cyber-node {
+            position: fixed;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Mobile optimizations */
         @media (max-width: 768px) {
-            .container {
-                margin: 1.5rem auto 3rem auto;
-                padding: 0 1rem;
+            header {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
             }
             
-            .info-box {
-                padding: 1.2rem;
-            }
-            
-            .info-box p {
-                font-size: 1rem;
-            }
-            
-            a.btn-back {
-                padding: 0.8rem 2rem;
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                margin: 1rem 0;
-                letter-spacing: 2px;
-            }
-            
-            .info-box {
+            .content-box {
                 padding: 1rem;
+                font-size: 0.9rem;
             }
             
-            .info-box h2 {
-                font-size: 1.2rem;
+            .content-box p {
+                font-size: 0.9rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+            
+            nav ul li {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+                min-width: 120px;
             }
         }
     </style>
 </head>
 <body>
-    <canvas id="galaxy-bg"></canvas>
-    <div class="stars" id="stars"></div>
+    <div class="cyber-grid"></div>
+    <div class="scanline"></div>
+    <div class="cyber-city" id="cyber-city"></div>
+    <canvas id="cyber-canvas"></canvas>
 
-    <div class="container">
-        <h1>MT CRASHER GALAXY</h1>
-
-        <div class="info-box">
-            <h2>INFO PENGGUNAAN WEB</h2>
-            <p>1. Peninjauan harus make banding minimal 5</p>
-            <p>2. Waktu Working: SPAM (6 JAM - 1 HARI), PERMANEN (3 - 4 BULAN)</p>
+    <div class="main-container">
+        <header>JASHER TEKS PREMIUM</header>
+        <header>CYBER MARKETPLACE</header>
+        
+        <div class="content-box">
+            <p><strong>𝐌𝐀𝐔 𝐃𝐄𝐑𝐄𝐒 𝐁𝐔𝐘𝐄𝐑??? 𝐉𝐎𝐈𝐍 𝐉𝐀𝐒𝐇𝐄𝐑 𝐀𝐉𝐀 𝐁𝐈𝐒𝐀 𝐒𝐇𝐀𝐑𝐄 𝐉𝐔𝐀𝐋𝐀𝐍 𝐋𝐀𝐆𝐈 🔥🥵</p>
+            <p>▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬▭</p>
+            <p><strong>𖤍 𝗝𝗮𝘀𝗵𝗲𝗿 𝘁𝗲𝗸𝘀  𖤍</strong></p>
+            <p>> <strong>𝗦𝗵𝗮𝗿𝗲 𝟭𝘅 = 𝟮𝗞</strong></p>
+            <p>> <strong>𝗦𝗵𝗮𝗿𝗲 𝟮𝘅 = 𝟰𝗞</strong></p>
+            <p>> <strong>𝗦𝗵𝗮𝗿𝗲 𝟯𝘅 = 𝟲𝗞</strong></p>
+            <p>☑️ <strong>𝗕𝗘𝗡𝗘𝗙𝗜𝗧 𝗝𝗔𝗦𝗛𝗘𝗥 𝗧𝗘𝗞𝗦 :</strong></p>
+            <p>> <strong>𝗗𝗶 𝘀𝗵𝗮𝗿𝗲 𝗸𝗲 𝟰𝟬𝟬+ 𝗖𝗵</strong></p>
+            <p>> <strong>𝗡𝗼 𝗴𝗶𝗺𝗶𝗰𝗸"</strong></p>
+            <p>> <strong>𝗡𝗼 𝗵𝗮𝘀𝗶𝗹 𝗯𝗼𝘁 𝗯𝘁</strong></p>
+            <p>> <strong>𝗝𝗮𝗺𝗶𝗻 𝗱𝗲𝗿𝗲𝘀 𝗯𝘂𝘆𝗲𝗿 𝗮𝘀𝗮𝗹 𝘂𝘀𝗮𝗵𝗮</strong></p>
+            <p>> <strong>𝗕𝗶𝘀𝗮 𝘀𝗵𝗮𝗿𝗲 𝗷𝘂𝗮𝗹𝗮𝗻</strong></p>
+            <p>▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬▭</p>
+            <p><strong>𖤍 𝗢𝗪𝗡 𝗝𝗔𝗦𝗛𝗘𝗥 𖤍</strong></p>
+            <p>> <strong>𝗢𝗪𝗡 𝗝𝗔𝗦𝗛𝗘𝗥 𝗣𝗨𝗕𝗟𝗜𝗖 = 𝟭𝟱𝗞</strong></p>
+            <p>> <strong>𝗢𝗪𝗡 𝗝𝗔𝗦𝗛𝗘𝗥 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 = 𝟮𝟱𝗞</strong></p>
+            <p>☑️ <strong>𝗕𝗘𝗡𝗘𝗙𝗜𝗧 𝗢𝗪𝗡 𝗝𝗔𝗦𝗛𝗘𝗥 :</strong></p>
+            <p>> <strong>𝗗𝗶 𝗮𝗱𝗱 𝗸𝗲 𝟯 𝗕𝗼𝘁  [ 𝗣𝗨𝗕𝗟𝗜𝗖 ]</strong></p>
+            <p>> <strong>𝗕𝗼𝘁 𝗞𝗲𝘀𝗮𝘁𝘂 = 𝟯𝟬𝟬+ 𝗰𝗵 [ 𝗣𝗨𝗕𝗟𝗜𝗖 ]</strong></p>
+            <p>> <strong>𝗕𝗼𝘁 𝗞𝗲𝗱𝘂𝗮 = 𝟭𝟮𝟱+ 𝗰𝗵 [ 𝗣𝗨𝗕𝗟𝗜𝗖 ]</strong></p>
+            <p>> <strong>𝗕𝗼𝘁 𝗞𝗲𝘁𝗶𝗴𝗮 = 𝟯𝟲𝟬+ 𝗰𝗵 [ 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 ]</strong></p>
+            <p>> <strong>𝗝𝗼𝗶𝗻 𝗱𝗶 𝗚𝗕 𝗴𝘄 [ 𝗣𝗨𝗕𝗟𝗜𝗖 ]</strong></p>
+            <p>> <strong>𝗚𝗕 𝗦𝗲𝗻𝗱𝗶𝗿𝗶 [ 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 ]</strong></p>
+            <p>> <strong>𝗝𝗲𝗱𝗮 𝟭𝟬 𝗺𝗲𝗻𝗶𝘁 [ 𝗣𝗨𝗕𝗟𝗜𝗖 ]</strong></p>
+            <p>> <strong>𝗝𝗲𝗱𝗮 𝟴 𝗺𝗲𝗻𝗶𝘁 [ 𝗣𝗥𝗜𝗩𝗔𝗧𝗘 ]</strong></p>
+            <p>> <strong>𝗡𝗼 𝗴𝗶𝗺𝗶𝗰𝗸"</strong></p>
+            <p>> <strong>𝗡𝗼 𝗵𝗮𝘀𝗶𝗹 𝗯𝗼𝘁 𝗯𝘁</strong></p>
+            <p>> <strong>𝗝𝗮𝗺𝗶𝗻 𝗱𝗲𝗿𝗲𝘀 𝗯𝘂𝘆𝗲𝗿 𝗮𝘀𝗮𝗹 𝘂𝘀𝗮𝗵𝗮</strong></p>
+            <p>> <strong>𝗕𝗶𝘀𝗮 𝘀𝗵𝗮𝗿𝗲 𝗷𝘂𝗮𝗹𝗮𝗻</strong></p>
+            <p>> <strong>𝗕𝗶𝘀𝗮 𝘀𝗵𝗮𝗿𝗲 𝘀𝗲𝗽𝘂𝗮𝘀𝗻𝘆𝗮</strong></p>
+            <p>> <strong>𝗕𝗶𝘀𝗮 𝗼𝗽𝗲𝗻 𝗷𝗮𝘀𝗮 𝘀𝗵𝗮𝗿𝗲 𝘁𝗲𝗸𝘀</strong></p>
+<p>▬▭▬▭▬▭▬▭▬▭▬▭▬▭▬▭</p>
+            <p><strong>🗣️ "Bang kok mahal?"</strong></p>
+            <p><strong>👤 "Botnya anti bt bos dah pasti kelas"</strong></p>
+            <p><strong>🗣️ "Jamin deres buyer?"</strong></p>
+            <p><strong>👤 "Jaminlah asal usaha"</strong></p>
+            <p><strong>𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠 👾</strong><br>
+            <a href="https://t.me/Shiroo_Dev_Official" target="_blank">https://t.me/Shiroo_Dev_Official</a></p>
+             <p><strong>GA ADA TELE JOIN GRUP WA AJA ☃️</strong><br>
+            <a href="
+https://chat.whatsapp.com/Iw8e93gm9QgFXcAmv789om?mode=r_t" target="_blank">https://chat.whatsapp.com/Iw8e93gm9QgFXcAmv789om?mode=r_t</a></p>
+            <p><strong>𝗧𝗘𝗦𝗧𝗜𝗠𝗢𝗡𝗜𝗔𝗟 ☁️</strong><br>
+            <a href="https://whatsapp.com/channel/0029Vb6cYqU9WtC5B61Vgm1o" target="_blank">https://whatsapp.com/channel/0029Vb6cYqU9WtC5B61Vgm1o</a></p>
+            <p><strong>𝗦𝗔𝗟𝗨𝗥𝗔𝗡 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗦𝗜 🍁</strong><br>
+            <a href="https://whatsapp.com/channel/0029VbAzATSLtOjJdYO2uE1r" target="_blank">https://whatsapp.com/channel/0029VbAzATSLtOjJdYO2uE1r</a></p>
+            <p>⚠️ <strong>𝗝𝗔𝗡𝗚𝗔𝗡 𝗖𝗢𝗣𝗬 𝗔𝗦𝗨 🔪</strong></p>
+            <p>> <strong>©ShiiroSolo😋</strong></p>
         </div>
-
-        <div class="btn-container">
-            <a href="home.html" class="btn-back">KEMBALI KE HALAMAN UTAMA</a>
-        </div>
+        
+        <nav>
+            <ul>
+                <li onclick="location.href='https://t.me/Shiroo_Dev_Official'">TELEGRAM</li>
+                    <li onclick="location.href='https://chat.whatsapp.com/Iw8e93gm9QgFXcAmv789om?mode=r_t'">JOIN GRUP WA TRX JIKA GAK ADA TELE</li>
+                <li onclick="location.href='https://whatsapp.com/channel/0029Vb6cYqU9WtC5B61Vgm1o'">TESTIMONIAL</li>
+                <li onclick="location.href='https://whatsapp.com/channel/0029VbAzATSLtOjJdYO2uE1r'">SALURAN INFO</li>
+            </ul>
+        </nav>
     </div>
 
     <script>
-        // Galaxy background animation
-        const canvas = document.getElementById('galaxy-bg');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+        // Create cyber city buildings
+        const city = document.getElementById('cyber-city');
+        const cityWidth = city.offsetWidth;
+        
+        for (let i = 0; i < 15; i++) {
+            const building = document.createElement('div');
+            building.className = 'cyber-building';
+            building.style.left = Math.random() * cityWidth + 'px';
+            building.style.width = (20 + Math.random() * 50) + 'px';
+            building.style.height = (30 + Math.random() * 70) + '%';
+            
+            // Add windows
+            const windowCount = Math.floor(Math.random() * 5) + 3;
+            for (let w = 0; w < windowCount; w++) {
+                const window = document.createElement('div');
+                window.style.position = 'absolute';
+                window.style.left = '50%';
+                window.style.transform = 'translateX(-50%)';
+                window.style.width = '60%';
+                window.style.height = '10px';
+                window.style.bottom = (20 + w * 25) + 'px';
+                window.style.background = Math.random() > 0.7 ? 
+                    'rgba(0, 240, 255, 0.8)' : 'rgba(0, 240, 255, 0.3)';
+                building.appendChild(window);
+            }
+            
+            city.appendChild(building);
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
-        // Star particles
-        class Star {
+        // Cyber Canvas Effects
+        const canvas = document.getElementById("cyber-canvas");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        class DataParticle {
             constructor() {
                 this.reset();
             }
-            
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 1.5;
-                this.speedX = (Math.random() - 0.5) * 0.2;
-                this.speedY = (Math.random() - 0.5) * 0.2;
-                this.alpha = Math.random();
-                this.alphaChange = Math.random() * 0.01;
-                this.color = `rgba(255, 255, 255, ${this.alpha})`;
-            }
-            
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                // Fade in and out
-                this.alpha += this.alphaChange;
-                if (this.alpha <= 0 || this.alpha >= 1) {
-                    this.alphaChange = -this.alphaChange;
-                }
-                this.color = `rgba(255, 255, 255, ${this.alpha})`;
-                
-                // Reset if out of bounds
-                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-                    this.reset();
-                }
-            }
-            
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
 
-        // Nebula particles
-        class Nebula {
-            constructor() {
-                this.reset();
-                this.color = `hsla(${Math.random() * 60 + 180}, 80%, 60%, ${Math.random() * 0.1 + 0.05})`;
-            }
-            
             reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 150 + 50;
-                this.speedX = (Math.random() - 0.5) * 0.05;
-                this.speedY = (Math.random() - 0.5) * 0.05;
+                this.x = Math.random() * canvas.width;
+                this.y = -Math.random() * canvas.height * 2;
+                this.speed = 1 + Math.random() * 3;
+                this.length = 5 + Math.random() * 15;
+                this.opacity = 0.1 + Math.random() * 0.3;
+                this.char = Math.random() > 0.5 ? '0' : '1';
+                if (Math.random() > 0.8) this.char = String.fromCharCode(0x30A0 + Math.random() * 96);
             }
-            
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                // Reset if out of bounds
-                if (this.x < -this.size || this.x > width + this.size || 
-                    this.y < -this.size || this.y > height + this.size) {
-                    this.reset();
-                }
-            }
-            
-            draw() {
-                const gradient = ctx.createRadialGradient(
-                    this.x, this.y, 0,
-                    this.x, this.y, this.size
-                );
-                gradient.addColorStop(0, this.color);
-                gradient.addColorStop(1, 'hsla(210, 100%, 20%, 0)');
-                
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
 
-        // Shooting stars
-        class ShootingStar {
-            constructor() {
-                this.reset();
-                this.trail = [];
-                this.maxTrail = 15;
-            }
-            
-            reset() {
-                this.x = Math.random() * width;
-                this.y = -10;
-                this.speedX = (Math.random() - 0.7) * 5;
-                this.speedY = Math.random() * 3 + 3;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.life = 100 + Math.random() * 50;
-                this.trail = [];
-            }
-            
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life--;
-                
-                // Add current position to trail
-                this.trail.push({x: this.x, y: this.y});
-                if (this.trail.length > this.maxTrail) {
-                    this.trail.shift();
-                }
-                
-                // Reset if out of bounds or life ended
-                if (this.x < 0 || this.x > width || this.y > height || this.life <= 0) {
-                    this.reset();
-                }
+                this.y += this.speed;
+                if (this.y > canvas.height + this.length) this.reset();
             }
-            
+
             draw() {
+                ctx.font = '12px monospace';
+                ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
+                
+                // Draw main character
+                ctx.fillText(this.char, this.x, this.y);
+                
                 // Draw trail
-                for (let i = 0; i < this.trail.length; i++) {
-                    const pos = this.trail[i];
-                    const alpha = i / this.trail.length;
-                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-                    ctx.beginPath();
-                    ctx.arc(pos.x, pos.y, this.size * alpha, 0, Math.PI * 2);
-                    ctx.fill();
+                for (let i = 1; i < this.length; i++) {
+                    const trailY = this.y - i * 5;
+                    if (trailY > 0) {
+                        ctx.fillStyle = `rgba(0, 200, 220, ${this.opacity * (1 - i/this.length)})`;
+                        const trailChar = Math.random() > 0.7 ? this.char : String.fromCharCode(0x30A0 + Math.random() * 96);
+                        ctx.fillText(trailChar, this.x, trailY);
+                    }
                 }
+            }
+        }
+
+        let particles = [];
+        for (let i = 0; i < 80; i++) {
+            particles.push(new DataParticle());
+        }
+
+        // Glowing nodes
+        class CyberNode {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = 2 + Math.random() * 4;
+                this.pulseSpeed = 0.01 + Math.random() * 0.02;
+                this.pulsePhase = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.pulsePhase += this.pulseSpeed;
+            }
+
+            draw() {
+                const glowSize = this.radius * (1.5 + Math.sin(this.pulsePhase) * 0.5);
                 
-                // Draw head
-                ctx.fillStyle = 'rgba(255, 255, 255, 1)';
+                // Glow effect
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, this.radius,
+                    this.x, this.y, glowSize
+                );
+                gradient.addColorStop(0, `rgba(0, 240, 255, 0.8)`);
+                gradient.addColorStop(1, `rgba(0, 240, 255, 0)`);
+                
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Core
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(0, 240, 255, 1)`;
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        // Create particles
-        const stars = [];
-        for (let i = 0; i < 200; i++) {
-            stars.push(new Star());
+        let nodes = [];
+        for (let i = 0; i < 15; i++) {
+            nodes.push(new CyberNode());
         }
 
-        const nebulae = [];
-        for (let i = 0; i < 5; i++) {
-            nebulae.push(new Nebula());
+        // Connection lines between nodes
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 200) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 * (1 - distance/200)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
         }
 
-        const shootingStars = [];
-        for (let i = 0; i < 3; i++) {
-            shootingStars.push(new ShootingStar());
-        }
-
-        // Animation loop
         function animate() {
-            ctx.fillStyle = 'rgba(0, 0, 10, 0.1)';
-            ctx.fillRect(0, 0, width, height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Draw and update particles
-            nebulae.forEach(nebula => {
-                nebula.update();
-                nebula.draw();
+            // Draw connections first (behind everything)
+            drawConnections();
+            
+            // Update and draw particles
+            particles.forEach((particle) => {
+                particle.update();
+                particle.draw();
             });
             
-            stars.forEach(star => {
-                star.update();
-                star.draw();
-            });
-            
-            shootingStars.forEach(star => {
-                star.update();
-                star.draw();
+            // Update and draw nodes
+            nodes.forEach((node) => {
+                node.update();
+                node.draw();
             });
             
             requestAnimationFrame(animate);
         }
         animate();
-
-        // Additional twinkling stars in the background
-        const starsContainer = document.getElementById('stars');
-        function createStars() {
-            starsContainer.innerHTML = '';
-            const count = Math.floor(window.innerWidth * window.innerHeight / 1000);
-            
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.style.position = 'absolute';
-                star.style.width = `${Math.random() * 2 + 1}px`;
-                star.style.height = star.style.width;
-                star.style.backgroundColor = 'white';
-                star.style.borderRadius = '50%';
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.opacity = Math.random();
-                star.style.boxShadow = `0 0 ${Math.random() * 5 + 2}px white`;
-                star.style.animation = `twinkle ${Math.random() * 5 + 3}s infinite alternate`;
-                
-                starsContainer.appendChild(star);
-            }
+        
+        // Ensure content stays centered on mobile
+        function setHeight() {
+            document.querySelector('.main-container').style.height = `${window.innerHeight}px`;
         }
-
-        // Add CSS for twinkling animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes twinkle {
-                0% { opacity: 0.2; }
-                100% { opacity: ${Math.random() * 0.8 + 0.2}; }
+        
+        window.addEventListener('resize', setHeight);
+        setHeight();
+        
+        // Prevent zooming on mobile
+        document.addEventListener('touchmove', function(e) {
+            if (window.innerHeight < document.documentElement.scrollHeight) {
+                e.preventDefault();
             }
-        `;
-        document.head.appendChild(style);
-
-        window.addEventListener('resize', createStars);
-        createStars();
+        }, { passive: false });
     </script>
 </body>
 </html>
