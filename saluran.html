@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Galaxy Channels - MT CRASHER WHATSAPP</title>
+    <title>SALURAN DEV - MT CRASHER WHATSAPP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
         /* Base Styles */
         * {
@@ -16,10 +17,73 @@
             width: 100%;
             height: 100%;
             overflow-x: hidden;
-            background: #000;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #fff;
+            background-color: #0a0a1a;
+            font-family: 'Rajdhani', sans-serif;
+            color: #00f0ff;
             touch-action: manipulation;
+        }
+        
+        /* Cyber Background Elements */
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 0;
+        }
+
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(0, 240, 255, 0.1),
+                transparent
+            );
+            animation: scan 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes scan {
+            0% { top: -10px; }
+            100% { top: 100%; }
+        }
+
+        .cyber-city {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(transparent, rgba(0, 240, 255, 0.1));
+            z-index: 0;
+        }
+
+        .cyber-building {
+            position: absolute;
+            bottom: 0;
+            height: 0;
+            background: rgba(0, 240, 255, 0.1);
+            border-left: 1px solid rgba(0, 240, 255, 0.3);
+            border-right: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        /* Data Particles */
+        #cyber-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
         
         /* Container */
@@ -37,23 +101,31 @@
         }
         
         header {
+            font-family: 'Orbitron', sans-serif;
             font-size: clamp(1.8rem, 6vw, 3.5rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.2rem;
             margin-bottom: 2rem;
-            background: linear-gradient(to right, #8e2de2, #4a00e0, #00d4ff);
+            background: linear-gradient(to right, #00f0ff, #0080ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 15px rgba(142, 45, 226, 0.4);
-            animation: titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            position: relative;
             padding: 0 15px;
         }
         
-        @keyframes titleGlow {
-            0% { text-shadow: 0 0 10px rgba(142, 45, 226, 0.3); }
-            100% { text-shadow: 0 0 20px rgba(74, 0, 224, 0.6), 0 0 30px rgba(0, 212, 255, 0.4); }
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #00f0ff, transparent);
+            box-shadow: 0 0 10px #00f0ff;
         }
         
         nav ul {
@@ -67,64 +139,47 @@
         }
         
         nav ul li {
-            background: linear-gradient(145deg, #8e2de2, #4a00e0);
+            background: rgba(20, 25, 45, 0.8);
             padding: 1rem 1.8rem;
-            border-radius: 50px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: 700;
             font-size: clamp(1rem, 3vw, 1.2rem);
-            color: #fff;
-            box-shadow: 0 5px 25px rgba(142, 45, 226, 0.5);
+            color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        nav ul li:nth-child(2n) {
-            animation-delay: 1s;
-        }
-        
-        nav ul li:nth-child(3n) {
-            animation-delay: 2s;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-8px) scale(1.03); }
-            100% { transform: translateY(0) scale(1); }
+            z-index: 1;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            font-family: 'Orbitron', sans-serif;
         }
         
         nav ul li:hover {
-            transform: scale(1.05) !important;
-            box-shadow: 0 8px 35px rgba(142, 45, 226, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+            background: rgba(30, 35, 60, 0.8);
         }
         
         nav ul li::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(
-                to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                rgba(255, 255, 255, 0.1),
-                transparent,
+                90deg, 
+                transparent, 
+                rgba(0, 240, 255, 0.2), 
                 transparent
             );
-            transform: rotate(30deg);
-            animation: shine 3s infinite;
+            transition: 0.5s;
+            z-index: -1;
         }
         
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(30deg); }
-            100% { transform: translateX(100%) rotate(30deg); }
+        nav ul li:hover::before {
+            left: 100%;
         }
         
         .content {
@@ -139,43 +194,46 @@
         }
         
         .content ul li {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(10, 15, 30, 0.5);
             padding: 1rem;
             margin: 1rem 0;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
+            border-radius: 4px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
             font-size: clamp(1rem, 3vw, 1.2rem);
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s ease;
         }
         
         .content ul li:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
         }
         
         button {
-            background: linear-gradient(145deg, #8e2de2, #4a00e0);
+            background: linear-gradient(45deg, #00f0ff, #0080ff);
             padding: 1rem 2.5rem;
             border: none;
-            border-radius: 50px;
-            color: #fff;
+            border-radius: 4px;
+            color: #0a0a1a;
             font-weight: 700;
             font-size: clamp(1rem, 3vw, 1.2rem);
             cursor: pointer;
-            box-shadow: 0 5px 25px rgba(142, 45, 226, 0.5);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             margin: 0.5rem;
             min-width: 250px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 240, 255, 0.5);
         }
         
         button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 35px rgba(142, 45, 226, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
         }
         
         button::before {
@@ -187,65 +245,16 @@
             height: 200%;
             background: linear-gradient(
                 to bottom right,
-                transparent,
-                transparent,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent,
-                transparent
+                transparent, transparent, transparent,
+                rgba(255, 255, 255, 0.1), transparent
             );
             transform: rotate(30deg);
             animation: shine 3s infinite;
         }
-        
-        /* Canvas for galaxy particles */
-        #galaxy-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        
-        /* Canvas for shooting stars */
-        #stars-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-        }
-        
-        /* Floating planets */
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(1px);
-            opacity: 0.8;
-            z-index: 3;
-            animation: float 15s ease-in-out infinite;
-        }
-        
-        .planet-1 {
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle at 30% 30%, #4a00e0, #8e2de2, #000);
-            top: 10%;
-            left: 5%;
-            box-shadow: 0 0 50px #4a00e0;
-            animation-delay: 0s;
-        }
-        
-        .planet-2 {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #00d4ff, #8e2de2, #000);
-            bottom: 15%;
-            right: 10%;
-            box-shadow: 0 0 40px #00d4ff;
-            animation-delay: 3s;
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
         }
         
         /* Mobile optimizations */
@@ -253,6 +262,7 @@
             header {
                 letter-spacing: 0.1rem;
                 margin-bottom: 1.5rem;
+                font-size: 1.5rem;
             }
             
             nav ul {
@@ -263,20 +273,6 @@
                 padding: 0.8rem 1.5rem;
             }
             
-            .planet-1 {
-                width: 80px;
-                height: 80px;
-                top: 5%;
-                left: 5%;
-            }
-            
-            .planet-2 {
-                width: 60px;
-                height: 60px;
-                bottom: 10%;
-                right: 5%;
-            }
-            
             button {
                 min-width: 200px;
                 padding: 0.8rem 1.5rem;
@@ -285,28 +281,23 @@
     </style>
 </head>
 <body>
-    <!-- Main galaxy particles canvas -->
-    <canvas id="galaxy-canvas"></canvas>
-    
-    <!-- Shooting stars canvas -->
-    <canvas id="stars-canvas"></canvas>
-    
-    <!-- Floating planets -->
-    <div class="planet planet-1"></div>
-    <div class="planet planet-2"></div>
+    <div class="cyber-grid"></div>
+    <div class="scanline"></div>
+    <div class="cyber-city" id="cyber-city"></div>
+    <canvas id="cyber-canvas"></canvas>
     
     <!-- Content container -->
     <div class="container">
-        <header>WAJIB JOIN !!!</header>
+        <header>SALURAN RESMI</header>
         <div class="content">
             <ul>
                 <li>Channel Resmi MT Crasher</li>
                 <li>Update Fitur Terbaru</li>
-                <li>Informasi</li>
+                <li>Informasi Penting</li>
             </ul>
         </div>
         
-        <button onclick="window.open('https://whatsapp.com/channel/0029VbAzATSLtOjJdYO2uE1r', '_blank')">
+        <button onclick="window.open('https://t.me/shiiroinformasi', '_blank')">
             SALURAN DEV
         </button>
         
@@ -314,314 +305,174 @@
     </div>
 
     <script>
-        // Galaxy Particles System
-        const galaxyCanvas = document.getElementById('galaxy-canvas');
-        const galaxyCtx = galaxyCanvas.getContext('2d');
+        // Create cyber city buildings
+        const city = document.getElementById('cyber-city');
+        const cityWidth = city.offsetWidth;
         
-        // Stars System
-        const starsCanvas = document.getElementById('stars-canvas');
-        const starsCtx = starsCanvas.getContext('2d');
-        
-        // Set canvas sizes
-        function resizeCanvases() {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
+        for (let i = 0; i < 15; i++) {
+            const building = document.createElement('div');
+            building.className = 'cyber-building';
+            building.style.left = Math.random() * cityWidth + 'px';
+            building.style.width = (20 + Math.random() * 50) + 'px';
+            building.style.height = (30 + Math.random() * 70) + '%';
             
-            galaxyCanvas.width = starsCanvas.width = width;
-            galaxyCanvas.height = starsCanvas.height = height;
+            // Add windows
+            const windowCount = Math.floor(Math.random() * 5) + 3;
+            for (let w = 0; w < windowCount; w++) {
+                const window = document.createElement('div');
+                window.style.position = 'absolute';
+                window.style.left = '50%';
+                window.style.transform = 'translateX(-50%)';
+                window.style.width = '60%';
+                window.style.height = '10px';
+                window.style.bottom = (20 + w * 25) + 'px';
+                window.style.background = Math.random() > 0.7 ? 
+                    'rgba(0, 240, 255, 0.8)' : 'rgba(0, 240, 255, 0.3)';
+                building.appendChild(window);
+            }
+            
+            city.appendChild(building);
         }
-        
-        window.addEventListener('resize', resizeCanvases);
-        resizeCanvases();
-        
-        // Galaxy Particles
-        class GalaxyParticle {
+
+        // Cyber Canvas Effects
+        const canvas = document.getElementById("cyber-canvas");
+        const ctx = canvas.getContext("2d");
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        class DataParticle {
             constructor() {
                 this.reset();
             }
-            
+
             reset() {
-                this.x = Math.random() * galaxyCanvas.width;
-                this.y = Math.random() * galaxyCanvas.height;
-                this.size = Math.random() * 3;
-                this.baseSize = this.size;
-                this.speedX = (Math.random() - 0.5) * 0.2;
-                this.speedY = (Math.random() - 0.5) * 0.2;
-                this.color = `hsl(${Math.random() * 60 + 240}, 100%, ${Math.random() * 30 + 50}%)`;
-                this.angle = 0;
-                this.angleSpeed = (Math.random() - 0.5) * 0.01;
-                this.distance = Math.random() * 100 + 50;
-                this.centerX = galaxyCanvas.width / 2 + (Math.random() - 0.5) * 200;
-                this.centerY = galaxyCanvas.height / 2 + (Math.random() - 0.5) * 200;
-                this.pulseSpeed = Math.random() * 0.02 + 0.01;
+                this.x = Math.random() * canvas.width;
+                this.y = -Math.random() * canvas.height * 2;
+                this.speed = 1 + Math.random() * 3;
+                this.length = 5 + Math.random() * 15;
+                this.opacity = 0.1 + Math.random() * 0.3;
+                this.char = Math.random() > 0.5 ? '0' : '1';
+                if (Math.random() > 0.8) this.char = String.fromCharCode(0x30A0 + Math.random() * 96);
             }
-            
+
             update() {
-                // Orbital movement
-                this.angle += this.angleSpeed;
-                const targetX = this.centerX + Math.cos(this.angle) * this.distance;
-                const targetY = this.centerY + Math.sin(this.angle) * this.distance;
-                
-                this.x += (targetX - this.x) * 0.05;
-                this.y += (targetY - this.y) * 0.05;
-                
-                // Pulsing effect
-                this.size = this.baseSize + Math.sin(Date.now() * this.pulseSpeed) * 1;
-                
-                // Wrap around edges
-                if (this.x < 0) this.x = galaxyCanvas.width;
-                if (this.x > galaxyCanvas.width) this.x = 0;
-                if (this.y < 0) this.y = galaxyCanvas.height;
-                if (this.y > galaxyCanvas.height) this.y = 0;
+                this.y += this.speed;
+                if (this.y > canvas.height + this.length) this.reset();
             }
-            
+
             draw() {
-                galaxyCtx.beginPath();
-                galaxyCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.font = '12px monospace';
+                ctx.fillStyle = `rgba(0, 240, 255, ${this.opacity})`;
                 
-                const gradient = galaxyCtx.createRadialGradient(
-                    this.x, this.y, 0,
-                    this.x, this.y, this.size
-                );
-                gradient.addColorStop(0, this.color);
-                gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                // Draw main character
+                ctx.fillText(this.char, this.x, this.y);
                 
-                galaxyCtx.fillStyle = gradient;
-                galaxyCtx.fill();
+                // Draw trail
+                for (let i = 1; i < this.length; i++) {
+                    const trailY = this.y - i * 5;
+                    if (trailY > 0) {
+                        ctx.fillStyle = `rgba(0, 200, 220, ${this.opacity * (1 - i/this.length)})`;
+                        const trailChar = Math.random() > 0.7 ? this.char : String.fromCharCode(0x30A0 + Math.random() * 96);
+                        ctx.fillText(trailChar, this.x, trailY);
+                    }
+                }
             }
         }
-        
-        // Shooting Stars
-        class ShootingStar {
+
+        let particles = [];
+        for (let i = 0; i < 80; i++) {
+            particles.push(new DataParticle());
+        }
+
+        // Glowing nodes
+        class CyberNode {
             constructor() {
-                this.reset();
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = 2 + Math.random() * 4;
+                this.pulseSpeed = 0.01 + Math.random() * 0.02;
+                this.pulsePhase = Math.random() * Math.PI * 2;
             }
-            
-            reset() {
-                this.x = Math.random() * starsCanvas.width;
-                this.y = -10;
-                this.speedX = (Math.random() - 0.3) * 10;
-                this.speedY = Math.random() * 5 + 5;
-                this.size = Math.random() * 2 + 1;
-                this.alpha = 0;
-                this.maxAlpha = Math.random() * 0.8 + 0.2;
-                this.fadeIn = true;
-                this.tailLength = Math.random() * 50 + 30;
-                this.color = `hsl(${Math.random() * 30 + 210}, 100%, ${Math.random() * 30 + 70}%)`;
-            }
-            
+
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                
-                if (this.fadeIn) {
-                    this.alpha += 0.02;
-                    if (this.alpha >= this.maxAlpha) this.fadeIn = false;
-                } else {
-                    this.alpha -= 0.01;
-                }
-                
-                if (this.alpha <= 0 || this.y > starsCanvas.height + 20) {
-                    this.reset();
-                }
+                this.pulsePhase += this.pulseSpeed;
             }
-            
+
             draw() {
-                starsCtx.beginPath();
-                starsCtx.moveTo(this.x, this.y);
-                starsCtx.lineTo(
-                    this.x - this.speedX * this.tailLength / 10,
-                    this.y - this.speedY * this.tailLength / 10
+                const glowSize = this.radius * (1.5 + Math.sin(this.pulsePhase) * 0.5);
+                
+                // Glow effect
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, this.radius,
+                    this.x, this.y, glowSize
                 );
+                gradient.addColorStop(0, `rgba(0, 240, 255, 0.8)`);
+                gradient.addColorStop(1, `rgba(0, 240, 255, 0)`);
                 
-                const gradient = starsCtx.createLinearGradient(
-                    this.x, this.y,
-                    this.x - this.speedX * this.tailLength / 10,
-                    this.y - this.speedY * this.tailLength / 10
-                );
+                ctx.beginPath();
+                ctx.fillStyle = gradient;
+                ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2);
+                ctx.fill();
                 
-                gradient.addColorStop(0, this.color);
-                gradient.addColorStop(1, 'rgba(255,255,255,0)');
-                
-                starsCtx.strokeStyle = gradient;
-                starsCtx.lineWidth = this.size;
-                starsCtx.globalAlpha = this.alpha;
-                starsCtx.stroke();
-                starsCtx.globalAlpha = 1;
-                
-                // Star head
-                starsCtx.beginPath();
-                starsCtx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
-                starsCtx.fillStyle = this.color;
-                starsCtx.globalAlpha = this.alpha;
-                starsCtx.fill();
-                starsCtx.globalAlpha = 1;
+                // Core
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(0, 240, 255, 1)`;
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
-        
-        // Create particles
-        const galaxyParticles = [];
-        for (let i = 0; i < 150; i++) {
-            galaxyParticles.push(new GalaxyParticle());
+
+        let nodes = [];
+        for (let i = 0; i < 15; i++) {
+            nodes.push(new CyberNode());
         }
-        
-        const shootingStars = [];
-        for (let i = 0; i < 5; i++) {
-            shootingStars.push(new ShootingStar());
+
+        // Connection lines between nodes
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 200) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 * (1 - distance/200)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
         }
-        
-        // Animation loop
+
         function animate() {
-            // Clear canvases with semi-transparent black for trail effects
-            galaxyCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            galaxyCtx.fillRect(0, 0, galaxyCanvas.width, galaxyCanvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            starsCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-            starsCtx.fillRect(0, 0, starsCanvas.width, starsCanvas.height);
+            // Draw connections first (behind everything)
+            drawConnections();
             
             // Update and draw particles
-            galaxyParticles.forEach(p => {
-                p.update();
-                p.draw();
+            particles.forEach((particle) => {
+                particle.update();
+                particle.draw();
             });
             
-            shootingStars.forEach(s => {
-                s.update();
-                s.draw();
+            // Update and draw nodes
+            nodes.forEach((node) => {
+                node.update();
+                node.draw();
             });
             
             requestAnimationFrame(animate);
         }
-        
         animate();
-        
-        // Touch and mouse interaction effects
-        const interactiveCanvas = document.createElement('canvas');
-        interactiveCanvas.style.position = 'fixed';
-        interactiveCanvas.style.top = '0';
-        interactiveCanvas.style.left = '0';
-        interactiveCanvas.style.width = '100%';
-        interactiveCanvas.style.height = '100%';
-        interactiveCanvas.style.zIndex = '10';
-        interactiveCanvas.style.pointerEvents = 'none';
-        document.body.appendChild(interactiveCanvas);
-        
-        const interactiveCtx = interactiveCanvas.getContext('2d');
-        interactiveCanvas.width = window.innerWidth;
-        interactiveCanvas.height = window.innerHeight;
-        
-        window.addEventListener('resize', () => {
-            interactiveCanvas.width = window.innerWidth;
-            interactiveCanvas.height = window.innerHeight;
-        });
-        
-        const ripples = [];
-        
-        class Ripple {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.radius = 5;
-                this.maxRadius = Math.random() * 100 + 50;
-                this.color = `hsla(${Math.random() * 60 + 240}, 100%, 70%, 0.5)`;
-                this.speed = Math.random() * 2 + 1;
-                this.alpha = 1;
-            }
-            
-            update() {
-                this.radius += this.speed;
-                this.alpha -= 0.01;
-                return this.alpha > 0 && this.radius < this.maxRadius;
-            }
-            
-            draw() {
-                interactiveCtx.beginPath();
-                interactiveCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                interactiveCtx.strokeStyle = this.color;
-                interactiveCtx.lineWidth = 2;
-                interactiveCtx.globalAlpha = this.alpha;
-                interactiveCtx.stroke();
-                interactiveCtx.globalAlpha = 1;
-            }
-        }
-        
-        function handleInteraction(x, y) {
-            ripples.push(new Ripple(x, y));
-            
-            // Create particles at interaction point
-            for (let i = 0; i < 10; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 3 + 1;
-                const particle = {
-                    x: x,
-                    y: y,
-                    speedX: Math.cos(angle) * speed,
-                    speedY: Math.sin(angle) * speed,
-                    size: Math.random() * 3 + 1,
-                    alpha: 1,
-                    color: `hsla(${Math.random() * 60 + 240}, 100%, 70%, 0.8)`
-                };
-                
-                (function(p) {
-                    const interval = setInterval(() => {
-                        p.x += p.speedX;
-                        p.y += p.speedY;
-                        p.alpha -= 0.05;
-                        p.speedX *= 0.95;
-                        p.speedY *= 0.95;
-                        
-                        if (p.alpha <= 0) {
-                            clearInterval(interval);
-                        }
-                    }, 16);
-                })(particle);
-                
-                ripples.push({
-                    update: function() { return particle.alpha > 0; },
-                    draw: function() {
-                        interactiveCtx.beginPath();
-                        interactiveCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                        interactiveCtx.fillStyle = p.color;
-                        interactiveCtx.globalAlpha = p.alpha;
-                        interactiveCtx.fill();
-                        interactiveCtx.globalAlpha = 1;
-                    }
-                });
-            }
-        }
-        
-        // Mouse/touch event listeners
-        document.querySelectorAll('nav ul li, button').forEach(element => {
-            element.addEventListener('mousemove', (e) => {
-                const rect = element.getBoundingClientRect();
-                handleInteraction(e.clientX - rect.left + rect.x, e.clientY - rect.top + rect.y);
-            });
-            
-            element.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                const rect = element.getBoundingClientRect();
-                const touch = e.touches[0];
-                handleInteraction(touch.clientX - rect.left + rect.x, touch.clientY - rect.top + rect.y);
-            }, { passive: false });
-        });
-        
-        // Ripple animation
-        function animateRipples() {
-            interactiveCtx.clearRect(0, 0, interactiveCanvas.width, interactiveCanvas.height);
-            
-            for (let i = ripples.length - 1; i >= 0; i--) {
-                const ripple = ripples[i];
-                if (ripple.update()) {
-                    ripple.draw();
-                } else {
-                    ripples.splice(i, 1);
-                }
-            }
-            
-            requestAnimationFrame(animateRipples);
-        }
-        
-        animateRipples();
     </script>
 </body>
 </html>
